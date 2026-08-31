@@ -1,0 +1,38 @@
+{{ define "main" }}
+
+<header>
+  {{ if .Draft }}
+  <h1 style="color: orange;">Draft</h1>
+  {{ end }}
+
+  <h1>{{ default .RelPermalink .Title }}</h1>
+
+  <p>
+  {{ with .Description }}
+  <b><i>{{ . }}</i></b>
+  {{ else }}
+  {{ partial "text-when-missing.html" "no description" }}
+  {{ end }}
+  </p>
+
+  <p>
+  {{ with .Date }}
+  <time>{{ .Format $.Site.Params.DateFmt }}</time>
+  {{ else }}
+  {{ partial "text-when-missing.html" "no date" }}
+  {{ end }}
+  </p>
+</header>
+
+<hr />
+
+{{ with .Content }}
+{{ . }}
+{{ else }}
+<p>{{ partial "text-when-missing.html" "no content" }}</p>
+{{ end }}
+
+<!-- <hr /> -->
+<footer></footer>
+
+{{ end }}

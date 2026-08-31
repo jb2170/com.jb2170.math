@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en-gb">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="{{ .Site.Title }}" />
+    <meta property="og:url" content="{{ .Permalink }}" />
+    <meta property="og:image" content="{{ absURL "/og-image.png" }}" />
+    <meta property="og:image:alt" content="preview" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:title" content="{{ default .RelPermalink .Title }}" />
+    <meta property="og:description" content="{{ default "(no description)" .Description }}" />
+
+    <link rel="stylesheet" href="/css/common.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <link rel="icon" href="/favicon.ico" />
+
+    <title>{{ default .RelPermalink .Title }}</title>
+  </head>
+
+  <body>
+    <div id="content-wrapper">
+      <header id="content-top"></header>
+
+      <div id="content-middle">
+        <aside class="sidebar" id="left-sidebar">
+          {{ partial "left-sidebar.html" . }}
+        </aside>
+
+        <div id="content-middle-center">
+          <main>
+            {{ block "main" . }}
+            {{ end }}
+          </main>
+        </div>
+
+        <aside class="sidebar" id="right-sidebar">
+          {{ partial "right-sidebar.html" . }}
+        </aside>
+      </div>
+
+      <footer id="content-bottom"></footer>
+    </div>
+  </body>
+</html>

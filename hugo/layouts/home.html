@@ -1,0 +1,9 @@
+{{ define "main" }}
+
+{{ with .Content }}
+{{ . }}
+{{ else }}
+<p>{{ partial "text-when-missing.html" "no content" }}</p>
+{{ end }}
+
+{{ end }}

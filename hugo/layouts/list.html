@@ -1,0 +1,87 @@
+{{ define "main" }}
+
+<header>
+  <h1>{{ default .RelPermalink .Title }}</h1>
+
+  <p>
+  {{ with .Description }}
+  <b><i>{{ . }}</i></b>
+  {{ else }}
+  {{ partial "text-when-missing.html" "no description" }}
+  {{ end }}
+  </p>
+</header>
+
+<hr />
+
+{{ with .Content }}
+{{ . }}
+<hr />
+{{ else }}
+{{ end }}
+
+{{ if not (or .Sections .Pages) }}
+<p>{{ partial "text-when-missing.html" "empty directory" }}</p>
+{{ else }}
+<section class="articles-list">
+
+{{ range sort .Sections "RelPermalink" "asc" }}
+  <article>
+    {{ if .Draft }}
+    <h1 style="color: orange;">Draft</h1>
+    {{ end }}
+
+    <h2><a href="{{ .RelPermalink }}">📁 {{ default (path.Base .RelPermalink) .Title }}</a></h2>
+
+    <p>
+      {{ with .Description }}
+      <b><i>{{ . }}</i></b>
+      {{ else }}
+      {{ partial "text-when-missing.html" "no description" }}
+      {{ end }}
+    </p>
+
+    <p>
+      <span>{{ .Pages.Len }}</span>
+      {{ if eq .Pages.Len 1 }}
+      <span>entry</span>
+      {{ else }}
+      <span>entries</span>
+      {{ end }}
+    </p>
+  </article>
+{{ end }}
+
+{{ range sort .RegularPages "RelPermalink" "asc" }}
+  <article>
+    {{ if .Draft }}
+    <h1 style="color: orange;">Draft</h1>
+    {{ end }}
+
+    <h2><a href="{{ .RelPermalink }}">📄 {{ default (path.Base .RelPermalink) .Title }}</a></h2>
+
+    <p>
+      {{ with .Description }}
+      <b><i>{{ . }}</i></b>
+      {{ else }}
+      {{ partial "text-when-missing.html" "no description" }}
+      {{ end }}
+    </p>
+
+    <p>
+      {{ with .Date }}
+      <time>{{ .Format $.Site.Params.DateFmt }}</time>
+      {{ else }}
+      {{ partial "text-when-missing.html" "no date" }}
+      {{ end }}
+    </p>
+  </article>
+{{ end }}
+
+</section>
+{{ end }}
+
+<!-- <hr /> -->
+<footer></footer>
+
+{{ end }}
