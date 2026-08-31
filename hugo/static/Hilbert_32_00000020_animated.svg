@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" shape-rendering="crispEdges">
+<defs>
+  <style>
+    .animated_fill_path {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: draw_path 10s linear forwards;
+    }
+
+    @keyframes draw_path {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+</defs>
+<path class="animated_fill_path" fill="transparent" stroke="#00000020" d="
+M 0.5 31 h +0.5
+
+h +2 v -2 h -2 v -2 v -2 h +2 v +2 h +2 v -2 h +2 v +2 v +2 h -2 v +2 h +2 h +2 v -2 h +2 v +2 h +2 h +2 v -2 h -2 v -2 h +2 v -2 h -2 h -2 v +2 h -2 v -2 v -2 v -2 h +2 v +2 h +2 h +2 v -2 h -2 v -2 h +2 v -2 h -2 h -2 v +2 h -2 v -2 h -2 h -2 v +2 h +2 v +2 v +2 h -2 v -2 h -2 v +2 h -2 v -2 v -2 h +2 v -2 h -2 v -2 v -2 h +2 v +2 h +2 h +2 v -2 h -2 v -2 h +2 v -2 h -2 h -2 v +2 h -2 v -2 v -2 h +2 v -2 h -2 v -2 v -2 h +2 v +2 h +2 v -2 h +2 v +2 v +2 h -2 v +2 h +2 h +2 h +2 v -2 h -2 v -2 v -2 h +2 v +2 h +2 v -2 h +2 v +2 v +2 h -2 v +2 h +2 v +2 v +2 h -2 v -2 h -2 h -2 v +2 h +2 v +2 h -2 v +2 h +2 h +2 v -2 h +2 v +2 h +2 v -2 h +2 v +2 h +2 h +2 v -2 h -2 v -2 h +2 v -2 h -2 h -2 v +2 h -2 v -2 v -2 h +2 v -2 h -2 v -2 v -2 h +2 v +2 h +2 v -2 h +2 v +2 v +2 h -2 v +2 h +2 h +2 h +2 v -2 h -2 v -2 v -2 h +2 v +2 h +2 v -2 h +2 v +2 v +2 h -2 v +2 h +2 v +2 v +2 h -2 v -2 h -2 h -2 v +2 h +2 v +2 h -2 v +2 h +2 h +2 v -2 h +2 v +2 v +2 h -2 v +2 h +2 v +2 v +2 h -2 v -2 h -2 v +2 h -2 v -2 v -2 h +2 v -2 h -2 h -2 v +2 h -2 v -2 h -2 h -2 v +2 h +2 v +2 h -2 v +2 h +2 h +2 v -2 h +2 v +2 v +2 v +2 h -2 v -2 h -2 h -2 v +2 h +2 v +2 h -2 v +2 h +2 h +2 v -2 h +2 v +2 h +2 h +2 v -2 h -2 v -2 v -2 h +2 v +2 h +2 v -2 h +2 v +2 v +2 h -2 v +2 h +2
+
+h +0.5
+" />
+</svg>

@@ -1,0 +1,135 @@
+body {
+  margin-block: 0;
+  margin-inline: 0;
+
+  display: flex;
+  justify-content: center; /* center #content-wrapper on page */
+}
+
+#content-wrapper {
+  /*
+    container for entire page, with a compact max width of 160ch
+    it would be weird to limit <body>'s width, which might affect
+    the background color
+  */
+
+  padding-inline: 2ch;
+  box-sizing: border-box; /* gutters always on, never eaten like margin would. and padding-inline on its own does not contribute to max-width 100% */
+  flex: 0 1 160ch;
+  max-width: 100%;
+  /*
+    flex-shrink: 1 and flex-basis: 160ch is only a suggestion to shrink.
+    max-width: 100% is forceful, even on unshrinkable content like tables.
+  */
+
+  display: flex;
+  flex-direction: column;
+}
+
+#content-top {
+  /* header if we want it */
+}
+
+#content-middle {
+  /* middle section with left and right sidebars */
+  display: flex;
+  justify-content: space-between;
+  gap: 2ch;
+}
+
+.sidebar {
+  padding-inline: 2ch;
+
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar > footer {
+  padding: 1ch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (width < 120ch) {
+  /* hide sidebars if screen width is less than 160ch minus ~40ch from sidebars */
+  .sidebar {
+    display: none;
+  }
+}
+
+#left-sidebar {
+  /* left sidebar fixed 32ch */
+  flex: 0 0 28ch;
+}
+
+#right-sidebar {
+  /* right sidebar fixed 4ch */
+  flex: 0 0 0ch;
+}
+
+#content-middle-center {
+  flex: 1 1 100%;
+  overflow-x: auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+}
+
+main > header,
+main > footer {
+  margin-block: 1em;
+}
+
+#content-bottom {
+  /* footer if we want it */
+}
+
+ul {
+  padding-inline-start: 1ch;
+}
+
+ul li {
+  padding-inline-start: 1ch;
+  list-style-type: ">";
+}
+
+figure {
+  margin-inline: 0ch;
+}
+
+figcaption {
+  font-style: italic;
+}
+
+figure img,
+figure video {
+  display: block; /* otherwise it's inline with 5px below it */
+  margin-block: 1em; /* like a <p> */
+  margin-inline: auto; /* center the img */
+  border: solid 1ch var(--accent); /* border not outline to not overlap neighbors */
+  box-sizing: border-box; /* for max-width 100% to include border */
+  max-width: 100%;
+  max-height: 30em;
+  height: auto;
+}
+
+.articles-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr));
+  gap: 2ch;
+}
+
+.articles-list > article {
+  padding-inline: 2ch;
+  box-sizing: border-box; /* include padding */
+}

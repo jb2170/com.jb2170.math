@@ -1,0 +1,29 @@
+:root {
+  --rebane-green: #7bae7f;
+  --primary: bisque;
+  --accent: blanchedalmond;
+}
+
+h1,
+h2,
+h3 {
+  text-decoration: underline double;
+}
+
+a,
+a:visited {
+  color: var(--rebane-green);
+}
+
+body {
+  background-color: var(--primary);
+}
+
+#left-sidebar,
+#right-sidebar {
+  background-color: var(--accent);
+}
+
+.articles-list > article {
+  background-color: var(--accent);
+}
