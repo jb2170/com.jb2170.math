@@ -1,0 +1,19 @@
+{
+  "Locale": "en-gb",
+  "Title": "baseof.jb2170.com",
+  "BaseURL": "https://baseof.jb2170.com/",
+
+  "Security": {
+    "AllowContent": [".*"]
+  },
+
+  "PluralizeListTitles": false,
+  "DisableKinds": [
+    "taxonomy", "term",
+    "404", "robotstxt", "rss", "sitemap"
+  ],
+
+  "Params": {
+    "DateFmt": "2006-01-02 15:04:05 -0700"
+  }
+}
