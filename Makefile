@@ -1,6 +1,6 @@
 SRC=hugo
 BUILD=${SRC}/public
-PUBLIC_HTML=jb2170@SAO:~/http/com.jb2170.baseof/public/
+PUBLIC_HTML=jb2170@SAO:~/http/com.jb2170.math/public/
 
 .PHONY: all
 all:

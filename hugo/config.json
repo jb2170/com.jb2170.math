@@ -1,7 +1,7 @@
 {
   "Locale": "en-gb",
-  "Title": "baseof.jb2170.com",
-  "BaseURL": "https://baseof.jb2170.com/",
+  "Title": "math.jb2170.com",
+  "BaseURL": "https://math.jb2170.com/",
 
   "Security": {
     "AllowContent": [".*"]
