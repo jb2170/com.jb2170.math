@@ -133,3 +133,17 @@ figure video {
   padding-inline: 2ch;
   box-sizing: border-box; /* include padding */
 }
+
+/* "_partials/nav-entry-{ul,li}.html" */
+
+ul.emoji-nav {
+  padding-inline-start: 2ch;
+}
+
+li.emoji-nav-directory {
+  list-style-type: "📁";
+}
+
+li.emoji-nav-file {
+  list-style-type: "📄";
+}

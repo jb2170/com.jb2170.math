@@ -1,0 +1,11 @@
+{{/* Takes in 'DisplayPage' and 'NavEntryPage' */}}
+
+{{ if eq .DisplayPage .NavEntryPage }}<b>{{ end }}
+<a href="{{ .NavEntryPage.RelPermalink }}">
+  {{ default (path.Base .NavEntryPage.RelPermalink) .NavEntryPage.Title }}
+</a>
+{{ if eq .DisplayPage .NavEntryPage }}</b>{{ end }}
+
+{{ if or .NavEntryPage.Sections .NavEntryPage.RegularPages }}
+  {{ partial "nav-entry-ul.html" . }}
+{{ end }}

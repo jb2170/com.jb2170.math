@@ -1,0 +1,15 @@
+{{/* Takes in 'DisplayPage' and 'NavEntryPage' */}}
+
+<ul class="emoji-nav">
+  {{ range sort .NavEntryPage.Sections "RelPermalink" "asc" }}
+    <li class="emoji-nav-directory">
+    {{ partial "nav-entry-li.html" (dict "DisplayPage" $.DisplayPage "NavEntryPage" . ) }}
+    </li>
+  {{ end }}
+
+  {{ range sort .NavEntryPage.RegularPages "RelPermalink" "asc" }}
+    <li class="emoji-nav-file">
+    {{ partial "nav-entry-li.html" (dict "DisplayPage" $.DisplayPage "NavEntryPage" . ) }}
+    </li>
+  {{ end }}
+</ul>
