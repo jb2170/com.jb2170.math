@@ -27,3 +27,7 @@ body {
 .articles-list > article {
   background-color: var(--accent);
 }
+
+.gallery-entry {
+  background-color: var(--accent);
+}

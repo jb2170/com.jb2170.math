@@ -134,6 +134,47 @@ figure video {
   box-sizing: border-box; /* include padding */
 }
 
+/* "_shortcodes/gallery.html" */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr));
+  gap: 2ch;
+}
+
+.gallery-entry {
+  padding-inline: 2ch;
+  box-sizing: border-box; /* include padding */
+}
+
+.gallery-entry-images-container {
+  margin-block: 1em;
+  position: relative;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.gallery-img-bg {
+  position: absolute;
+  inset: -10px;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  object-fit: cover;
+  z-index: 1;
+  filter: blur(3px);
+}
+
+.gallery-img-fg {
+  position: absolute;
+  inset: 0px;
+  width: calc(100% + 0px);
+  height: calc(100% + 0px);
+  object-fit: contain;
+  z-index: 2;
+}
+
 /* "_partials/nav-entry-{ul,li}.html" */
 
 ul.emoji-nav {

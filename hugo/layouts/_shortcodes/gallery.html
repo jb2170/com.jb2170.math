@@ -1,0 +1,14 @@
+{{/*  Takes in positional glob pattern eg "shannon/*.jpg"  */}}
+
+<div class="gallery">
+  {{ range sort (.Page.Resources.Match (.Get 0)) "Name" "asc" }}
+    {{ $thumb := .Resize "256x" }}
+
+    <article class="gallery-entry">
+      <div class="gallery-entry-images-container"><a href="{{ .RelPermalink }}">
+        <img src="{{ $thumb.RelPermalink }}" class="gallery-img-bg" aria-hidden="true" />
+        <img src="{{ $thumb.RelPermalink }}" class="gallery-img-fg" />
+      </a></div>
+    </article>
+  {{ end }}
+</div>
