@@ -188,3 +188,19 @@ li.emoji-nav-directory {
 li.emoji-nav-file {
   list-style-type: "📄";
 }
+
+/* "_partials/breadcrumbs/*.html" */
+
+.breadcrumbs {
+  margin-block: 1em;
+  padding-inline: 2ch;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1ch;
+}
+
+.breadcrumb {
+  display: flex;
+  gap: 1ch;
+}

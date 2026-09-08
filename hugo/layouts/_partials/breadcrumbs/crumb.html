@@ -1,0 +1,31 @@
+{{/*  Takes in a Page as .  */}}
+
+{{/*  {{ $show_arrow := not .IsHome }}  */}}
+{{ $show_arrow := true }}
+
+{{ $icon := "" }}
+{{ if .IsHome }}         {{ $icon = "🏠" }}
+{{ else if .IsSection }} {{ $icon = "📁" }}
+{{ else if .IsPage }}    {{ $icon = "📄" }}
+{{ else }}               {{ $icon = "❓" }}
+{{ end }}
+
+{{ $bold := eq page . }}
+
+{{ $title := "" }}
+{{ if .IsHome }}     {{ $title = site.Title }}
+{{ else if .Title }} {{ $title = .Title }}
+{{ else }}           {{ $title = path.Base .RelPermalink }}
+{{ end }}
+
+<span class="breadcrumb">
+  {{ if $show_arrow }}
+  <span>&gt;</span>
+  {{ end }}
+  <span>{{ $icon }}</span>
+  <span>
+    {{ if $bold }}<b>{{ end }}
+    <a href="{{ .RelPermalink }}">{{ $title }}</a>
+    {{ if $bold }}</b>{{ end }}
+  </span>
+</span>
