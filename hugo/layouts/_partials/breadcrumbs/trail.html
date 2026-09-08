@@ -1,0 +1,8 @@
+{{/*  Shows ancestor crumbs then crumb for Page passed in as '.'  */}}
+
+<nav class="breadcrumbs">
+  {{ range .Ancestors.Reverse }}
+    {{ partial "breadcrumbs/crumb.html" . }}
+  {{ end }}
+  {{ partial "breadcrumbs/crumb.html" . }}
+</nav>
