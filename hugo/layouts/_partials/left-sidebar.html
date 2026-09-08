@@ -2,6 +2,15 @@
   <header>
     <h2 style="text-align: center"><a href="{{ .Site.Home.RelPermalink }}">{{ .Site.Title }}</a></h2>
   </header>
+
+  <nav>
+    <h3>Navigation</h3>
+    {{ if or .Site.Sections .Site.RegularPages }}
+      {{ partial "nav-entry-ul.html" (dict "DisplayPage" . "NavEntryPage" .Site.Home) }}
+    {{ else }}
+      <p>{{ partial "text-when-missing.html" "empty site" }}</p>
+    {{ end }}
+  </nav>
 </div>
 
 <footer>

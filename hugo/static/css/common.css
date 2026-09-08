@@ -30,6 +30,10 @@ body {
   /* header if we want it */
 }
 
+#topbar {
+  display: none;
+}
+
 #content-middle {
   /* middle section with left and right sidebars */
   display: flex;
@@ -61,6 +65,11 @@ body {
   /* hide sidebars if screen width is less than 160ch minus ~40ch from sidebars */
   .sidebar {
     display: none;
+  }
+
+  /* show topbar breadcrumb navigation */
+  #topbar {
+    display: block;
   }
 }
 

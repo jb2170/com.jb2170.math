@@ -19,6 +19,7 @@ body {
   background-color: var(--primary);
 }
 
+#topbar,
 #left-sidebar,
 #right-sidebar {
   background-color: var(--accent);

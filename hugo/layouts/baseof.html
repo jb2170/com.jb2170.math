@@ -28,6 +28,11 @@
     <div id="content-wrapper">
       <header id="content-top"></header>
 
+      <div id="topbar">
+        {{/*  only visible on narrow screen  */}}
+        {{ partial "topbar.html" . }}
+      </div>
+
       <div id="content-middle">
         <aside class="sidebar" id="left-sidebar">
           {{ partial "left-sidebar.html" . }}
