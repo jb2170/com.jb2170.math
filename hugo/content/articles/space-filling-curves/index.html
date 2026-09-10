@@ -1,0 +1,272 @@
+{
+  "Title": "Space Filling Curves",
+  "Description": "Here's some SVGs I made",
+  "Date": "2026-09-01T00:54:41+01:00"
+}
+
+<style>
+  details summary {
+    font-size: 1.5em; /* Match h2 size. */
+    font-weight: bold;
+    text-decoration: underline double;
+  }
+
+  img {
+    box-sizing: content-box !important;
+  }
+
+  .img-row {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1ch;
+  }
+
+  .monospace-table {
+    border-spacing: 0.5ch;
+    text-align: center;
+  }
+
+  .monospace-table td {
+    width: 2ch;
+    height: 1em;
+  }
+
+  .curve-piece {
+    background-color: yellowgreen;
+  }
+
+  .curve-joiner {
+    background-color: violet;
+  }
+
+  .curve-space {
+    background-color: sandybrown;
+  }
+
+  .curve-piece-next-order {
+    background-color: olivedrab;
+  }
+</style>
+
+<details open="true">
+  <summary>Hilbert Curve</summary>
+
+  <figure>
+    <div class="img-row">
+      <img src="./svg/Hilbert/Hilbert_1_4_00000020_animated.svg" style="width: 128px" />
+      <img src="./svg/Hilbert/Hilbert_2_8_00000020_animated.svg" style="width: 128px" />
+      <img src="./svg/Hilbert/Hilbert_3_16_00000020_animated.svg" style="width: 128px" />
+      <img src="./svg/Hilbert/Hilbert_4_32_00000020_animated.svg" style="width: 128px" />
+    </div>
+  </figure>
+
+  <h3>Construction</h3>
+  <table class="monospace-table">
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="curve-piece">⇀</td>
+        <td class="curve-joiner">→</td>
+        <td class="curve-piece">⇀</td>
+        <td></td>
+        <td colspan="3" rowspan="3" class="curve-piece-next-order">⇀</td>
+      </tr>
+      <tr>
+        <td class="curve-joiner">↑</td>
+        <td class="curve-space"></td>
+        <td class="curve-joiner">↓</td>
+        <td>=</td>
+      </tr>
+      <tr>
+        <td class="curve-piece">↾</td>
+        <td class="curve-space"></td>
+        <td class="curve-piece">⇃</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><q>⇀</q> is the base piece from the previous order and <q>↼</q> its mirror copy from reflecting in the y-axis, and rotations made as necessary.</p>
+  <p>Compared to the Peano curves below, the Hilbert curve may look a little weird in that its <q>entrance / exit points</q> (on the bottom of the curve images) alternate between facing horizontal and facing vertical as we build up the curve orders.</p>
+  <p>This is an artefact of the <q>entrance / exit pieces</q> (on the bottom row of the construction diagram above) using mirrored copies of the previous order's base piece combined with rotations. Because reflections are symmetries of order two, this is where the <q>alternating</q> comes from. The bottom-left corners of order-n curves, when zoomed in to order 1, alternate between <q>↾</q> and <q>⇀</q> as we enumerate n, equivalent to reflecting in a top-right-facing line of symmetry.</p>
+  <p>A way to distract from this alternating is to focus on the base piece(s) used on the top of the curve, which maintain their signature crown appearance.</p>
+  <p>If this doesn't make sense don't worry, read on to the simpler Peano curves below, and come back to this later.</p>
+
+  <h3>Minecraft architecture use</h3>
+  {{< gallery "dbt/*" >}}
+  <p>Used in the lobby of <q>Dead Bush Tower</q>, my home skyscraper.</p>
+</details>
+
+<details open="true">
+  <summary>Peano Curve</summary>
+
+  <figure>
+    <div class="img-row">
+      <img src="./svg/Peano/Peano_1_6_00000020_static.svg" style="width: 216px" />
+      <img src="./svg/Peano/Peano_2_18_00000020_animated.svg" style="width: 216px" />
+      <img src="./svg/Peano/Peano_3_54_00000020_animated.svg" style="width: 216px" />
+    </div>
+  </figure>
+
+  <h3>Construction</h3>
+  <table class="monospace-table">
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="curve-piece">↿</td>
+        <td class="curve-joiner">→</td>
+        <td class="curve-piece">⇃</td>
+        <td class="curve-space"></td>
+        <td class="curve-piece">↿</td>
+        <td></td>
+        <td colspan="5" rowspan="5" class="curve-piece-next-order">↿</td>
+      </tr>
+      <tr>
+        <td class="curve-joiner">↑</td>
+        <td class="curve-space"></td>
+        <td class="curve-joiner">↓</td>
+        <td class="curve-space"></td>
+        <td class="curve-joiner">↑</td>
+      </tr>
+      <tr>
+        <td class="curve-piece">↾</td>
+        <td class="curve-space"></td>
+        <td class="curve-piece">⇂</td>
+        <td class="curve-space"></td>
+        <td class="curve-piece">↾</td>
+        <td>=</td>
+      </tr>
+      <tr>
+        <td class="curve-joiner">↑</td>
+        <td class="curve-space"></td>
+        <td class="curve-joiner">↓</td>
+        <td class="curve-space"></td>
+        <td class="curve-joiner">↑</td>
+      </tr>
+      <tr>
+        <td class="curve-piece">↿</td>
+        <td class="curve-space"></td>
+        <td class="curve-piece">⇃</td>
+        <td class="curve-joiner">→</td>
+        <td class="curve-piece">↿</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><q>↿</q> is the base piece from the previous order and <q>↾</q> its mirror copy from reflecting in the y-axis, and rotations made as necessary.</p>
+</details>
+
+<details open="true">
+  <summary>Twisted Peano Curve</summary>
+
+  <figure>
+    <div class="img-row">
+      <img src="./svg/Peano-Twisted/Peano-Twisted_1_6_00000020_static.svg" style="width: 216px" />
+      <img src="./svg/Peano-Twisted/Peano-Twisted_2_18_00000020_animated.svg" style="width: 216px" />
+      <img src="./svg/Peano-Twisted/Peano-Twisted_3_54_00000020_animated.svg" style="width: 216px" />
+    </div>
+    <figcaption>
+      <p>Careful with those Swastika-esque paths! I think we're mature enough to observe this from a purely mathematical point of view right? I do speak Hebrew too...</p>
+    </figcaption>
+  </figure>
+
+  <h3>Construction</h3>
+  <table class="monospace-table">
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="curve-piece">↗</td>
+        <td class="curve-joiner">→</td>
+        <td class="curve-piece">↘</td>
+        <td class="curve-space"></td>
+        <td class="curve-piece">↗</td>
+        <td></td>
+        <td colspan="5" rowspan="5" class="curve-piece-next-order">↗</td>
+      </tr>
+      <tr>
+        <td class="curve-joiner">↑</td>
+        <td class="curve-space"></td>
+        <td class="curve-joiner">↓</td>
+        <td class="curve-space"></td>
+        <td class="curve-joiner">↑</td>
+      </tr>
+      <tr>
+        <td class="curve-piece">↖</td>
+        <td class="curve-space"></td>
+        <td class="curve-piece">↙</td>
+        <td class="curve-space"></td>
+        <td class="curve-piece">↖</td>
+        <td>=</td>
+      </tr>
+      <tr>
+        <td class="curve-joiner">↑</td>
+        <td class="curve-space"></td>
+        <td class="curve-joiner">↓</td>
+        <td class="curve-space"></td>
+        <td class="curve-joiner">↑</td>
+      </tr>
+      <tr>
+        <td class="curve-piece">↗</td>
+        <td class="curve-space"></td>
+        <td class="curve-piece">↘</td>
+        <td class="curve-joiner">→</td>
+        <td class="curve-piece">↗</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><q>↗</q> is the base piece from the previous order, and rotations made as necessary, no reflections needed.</p>
+
+  <h3>Minecraft architecture use</h3>
+  {{< gallery "jungle/*" >}}
+  <p>Used in the lobby of my Jungle Villager skyscraper.</p>
+</details>
+
+<details open="true">
+  <summary>Licensing</summary>
+
+  <p>These images were created by me, jb2170, hereby licensed under CC-BY-NC-SA-4.0.</p>
+  <p>There's animated and static versions of the SVGs located <a href="./svg/">here</a>, as well as Python scripts for procedurally generating their contents. Have fun!</p>
+</details>
+
+<details open="true">
+  <summary>Further Reading</summary>
+
+  <ul>
+    <li>
+      <q><a href="https://en.wikipedia.org/wiki/Space-filling_curve">Space-Filling Curve</a></q> on Wikipedia.
+    </li>
+  </ul>
+</details>
