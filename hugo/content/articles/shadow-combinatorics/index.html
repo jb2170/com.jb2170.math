@@ -1,0 +1,223 @@
+{
+  "Title": "Shadow the Hedgehog Combinatorics",
+  "Description": "Counting the 326 stories",
+  "Date": "2026-09-01T08:00:00+01:00"
+}
+
+<style>
+  details summary {
+    font-size: 1.5em; /* Match h2 size. */
+    font-weight: bold;
+    text-decoration: underline double;
+  }
+
+  details details {
+    margin-inline-start: 2ch;
+  }
+
+  .dark {
+    color: red;
+  }
+
+  .neutral {
+    color: chartreuse;
+  }
+
+  .hero {
+    color: blue;
+  }
+</style>
+
+<p><a href="https://en.wikipedia.org/wiki/Shadow_the_Hedgehog_(video_game)">Shadow The Hedgehog (2005)</a> allows the player to choose Shadow's destiny.</p>
+<p>After surviving his fall from the Space Colony ARK at the end of Sonic Adventure 2, Shadow awakes with amnesia, unable to remember his past. In each mission one chooses from a <span class="dark">Dark</span>, <span class="neutral">Neutral</span>, or <span class="hero">Hero</span> objective when available, to fill in details of Shadow's past and present, and progress to the next stage.</p>
+<p>This leads to a story progression graph across the possible missions looking as follows:</p>
+
+<figure>
+  <img src="./shadow-missions-text.svg" />
+</figure>
+
+<p>One starts out in stage 1 (Westopolis), then progresses through one connected mission from each of stages 2-6, and a then a final boss (colloquially stage 7 in this article).</p>
+<p>One thing I wanted to do as a child, but didn't get round to until now, is to count <q>how many possible story routes are there?</q>.</p>
+<p>So let's do it!</p>
+
+<details open="true">
+  <summary>Calculating the number of possible stories</summary>
+
+  <details open="true">
+    <summary>First attempt: backtracking from the end</summary>
+
+    <p>My first thoughts were to start at each final boss mission, recursively work backwards through the graph multiplying by the number of edges entering the mission vertex, and finally summing over the all the boss missions.</p>
+    <p>This naive method doesn't work as each mission from the previous stage may have a different number of ways to reach it. We would need to take into account the non-regular tree-like structure arising from working backwards through the graph; some missions only have one parent (eg S4-M1 (Central City)), some have two (eg S3-M1 (Cryptic Castle)), and some have three (S3-M2 (Prison Island)).</p>
+    <p>Furthermore, with these trees we would be re-calculating the same values for <q>number of ways to reach mission X</q> over and over. It would be like defining a Fibonacci function that uses recursion:</p>
+
+    <pre>
+def fib(n: int) -> int:
+    if n == 1:
+        return 1
+    if n == 2:
+        return 1
+    return fib(n-1) + fib(n-2)
+    </pre>
+
+    <p>rather than caching the computed values.</p>
+  </details>
+
+  <details open="true">
+    <summary>Second attempt: work forwards</summary>
+
+    <p>A correct approach is to work <em>forwards</em> through the stages, counting how many ways there are to reach a mission by summing the number of ways to reach each <q>parent</q> mission from the previous stage that is connected to the mission we are interested in. It's a bit like <a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle">Pascal's Triangle</a>.</p>
+    <p>We start from S1-M1 (Westopolis), which has a postulated value of 1. Every story starts from here, probably making it canon in the Sonic universe. It is for this reason (and consistency with another <a href="https://commons.wikimedia.org/wiki/File:ShadowTheHedgehogMap_alignments.svg">Wikipedia Image</a>) that I have coloured it specially as yellow, even though it is inline with the rest of the <q>neutral</q> missions.</p>
+    <p>Each S2 mission has one parent, S1-M1.</p>
+    <p>S3-M1 has two parents, S3-M2 has three parents, and S3-M3 has two parents. Since every parent has a value of 1, these missions also have pretty trivial values.</p>
+    <p>S4 is where things start to get interesting, as we are no longer just effectively counting the number of parents; we are properly summing the values of the parents. Look below at the full diagram.</p>
+
+    <figure>
+      <img src="./routes-from-s1-m1-to-each-no-s8.svg" />
+      <figcaption>
+        <p>The number of routes from S1-M1 to each mission. The complexity grows pretty fast!</p>
+      </figcaption>
+    </figure>
+
+    <p>Having filled in the rest of the diagram, we can now sum up over all the S7 final boss values. Perhaps it makes sense colloquially to talk about a single <q>S8-M1</q> mission, eg representing the credits, that all the S7 missions feed into, to act as a single summation point which stores this value.</p>
+
+    <figure>
+      <img src="./routes-from-s1-m1-to-each-inc-s8.svg" />
+      <figcaption>
+        <p>The number of routes from S1-M1 to each mission, including S8-M1.</p>
+      </figcaption>
+    </figure>
+
+    <p>And there we have it, <b>326</b>, our answer to how many possible stories there are!</p>
+    <p>Fun fact: the developers of Shadow The Hedgehog gave each one of them a title. A full list is available on <a href="https://info.sonicretro.org/List_of_Shadow_the_Hedgehog_Library_sequences">Sonic Retro</a>. My personal favourite ending is <a href="https://www.youtube.com/watch?v=eRtJkYgSa7I">semi-dark hero</a>, very Machiavellian! Story route number 004 which leads to this is titled <q>The Ultimate Ego</q>.</p>
+    <p>Thankfully one only has to complete each of the ten S7 bosses at least once to unlock <q>The Last Way</q>, the eleventh, canonical ending to the game. One is not obliged to play through Westopolis 326 times...</p>
+  </details>
+</details>
+
+<details open="true">
+  <summary>Calculating the number of times each mission appears across the 326 stories</summary>
+
+  <p>The next question I have is <q>how many times does each mission appear across these 326 stories?</q>. It is somewhat obvious that S1-M1 (Westopolis) appears all 326 times, and that the number of times each S7 boss appears is the number of routes to it. As for stages 2 to 6 we need a strategy.</p>
+
+  <details open="true">
+    <summary>Strategy 1: S1-M1 to Sx-My, Sx-My to S8-M1</summary>
+
+    <p>Our diagrams above help to count the number of routes to S8-M1 starting from S1-M1, 326, and then we multiply this by the number of ways to get to S1-M1 (which we trivially postulated to be 1) to acquire the number of appearances of S1-M1, 326.</p>
+    <p>To count the number of appearances of Sx-My, we count the number of routes to S8-M1 starting from Sx-My, and then we multiply this by the number of routes to Sx-My from S1-M1, which we have previously calculated.</p>
+    <p>For this strategy we shall need some more diagrams. An example for S4-M4 (Mad Matrix) is below:</p>
+
+    <div style="display: flex; gap: 1ch">
+      <figure style="flex: 1">
+        <img src="./routes-from-s1-m1-to-s4-m4-inc-s8.svg" />
+        <figcaption>
+          <p>The number of routes from S1-M1 to S4-M4, previously calculated.</p>
+        </figcaption>
+      </figure>
+
+      <figure style="flex: 1">
+        <img src="./routes-from-s4-m4-to-each-inc-s8.svg" />
+        <figcaption>
+          <p>The number of routes from S4-M4 to S8-M1, newly calculated.</p>
+        </figcaption>
+      </figure>
+    </div>
+
+    <p>Multiplying 5 by 16 equals 80, the number of routes involving S4-M4. Computing this strategy by hand for all missions we obtain:</p>
+
+    <div style="display: flex; gap: 1ch">
+      <figure style="flex: 1">
+        <img src="./routes-from-s1-m1-to-each-inc-s8.svg" />
+        <figcaption>
+          <p>The number of routes from S1-M1 to each mission, previously calculated.</p>
+        </figcaption>
+      </figure>
+
+      <figure style="flex: 1">
+        <img src="./routes-from-each-to-s8-m1-inc-s8.svg" />
+        <figcaption>
+          <p>The number of routes from each mission to S8-M1.</p>
+        </figcaption>
+      </figure>
+    </div>
+
+    <p>and taking the element-wise product (<a href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard product</a>?) of these two diagrams gives us our result.</p>
+
+    <figure>
+      <img src="./routes-including-each-inc-s8.svg" />
+      <figcaption>
+        <p>The number of routes including each mission, aka the number of times each mission appears across the 326 stories.</p>
+      </figcaption>
+    </figure>
+
+    <p>It is a good sanity check to verify that each stage's values sum to 326. This is because every one of the 326 routes goes through exactly one mission from each stage.</p>
+  </details>
+
+  <details open="true">
+    <summary>Strategy 2: S1-M1 to Sx-My, S8-M1 to Sx-My</summary>
+
+    <p>Upon closer inspection of the right-hand diagram above for <q>the number of routes from each mission to S8-M1</q>, one will notice that the entries form a summation-tree / Pascal's-triangle-esque structure very similar to the left-hand diagram counting <q>the number of routes from S1-M1 to each mission</q>, just from right-to-left instead of left-to-right.</p>
+    <p>This is not a coincidence, as the number of routes from Sx-My to S8-M1 is equivalent to <q>the number of routes from S8-M1 to Sx-My</q> if we allow ourself to work backwards through the graph.</p>
+
+    <div style="display: flex; gap: 1ch">
+      <figure style="flex: 1">
+        <img src="./routes-from-s1-m1-to-each-inc-s8.svg" />
+        <figcaption>
+          <p>The number of routes from S1-M1 to each mission, previously calculated.</p>
+        </figcaption>
+      </figure>
+
+      <figure style="flex: 1">
+        <img src="./routes-from-each-to-s8-m1-inc-s8.svg" />
+        <figcaption>
+          <p>The number of routes from S8-M1 to each mission, traveling right-to-left, previously calculated as the number of routes from each mission to S8-M1, traveling left-to-right.</p>
+        </figcaption>
+      </figure>
+    </div>
+
+    <p>Seeing each mission Sx-My as a <q>gluing point</q> / fixed point between routes from S1-M1 to Sx-My and from S8-M1 to Sx-My, it should be clear that the number of routes from S1-M1 to S8-M1 that include Sx-My is the product of the number of routes on each side leading to Sx-My. Hence we take the element-wise product of these two diagrams, as we did before.</p>
+
+    <figure>
+      <img src="./routes-including-each-inc-s8.svg" />
+      <figcaption>
+        <p>The number of routes including each mission, aka the number of times each mission appears across the 326 stories, previously calculated.</p>
+      </figcaption>
+    </figure>
+
+    <p>This is a neat trick of a strategy, that I only spotted after hand-computing all the values for the first strategy. You live and learn. See this as us discovering the trick from first principles, rather than wasted time.</p>
+  </details>
+</details>
+
+<details open="true">
+  <summary>Wikipedia images info</summary>
+
+  <p>I took special care to check which edges of the story graph are <span class="dark">Dark</span>, <span class="neutral">Neutral</span>, and <span class="hero">Hero</span>, as there are several incorrect images online.</p>
+
+  <div style="display: flex; gap: 1ch">
+    <figure style="flex: 1">
+      <img src="./shadow-missions-no-text-three-ways.svg" />
+      <figcaption>
+        <p>The eleven missions with three objectives are clear.</p>
+        <p>They all have <span class="dark">dark ↗</span> upwards, <span class="neutral">neutral →</span> forwards, and <span class="hero">hero ↘</span> downwards.</p>
+      </figcaption>
+    </figure>
+
+    <figure style="flex: 1">
+      <img src="./shadow-missions-no-text-two-ways.svg" />
+      <figcaption>
+        <p>The eleven missions with two objectives differ.</p>
+        <p>S2-M1 (Digital Circuit) and S4-M1 (Central City) have <span class="dark">dark →</span> forwards and <span class="hero">hero ↘</span> downwards.</p>
+        <p>S5-M1 (The ARK) has <span class="dark">dark →</span> forwards and <span class="neutral">neutral ↘</span> downwards.</p>
+        <p>S2-M3 (Lethal Highway) and S4-M5 (Death Ruins) have <span class="dark">dark ↗</span> upwards and <span class="hero">hero →</span> forwards.</p>
+        <p>S5-M5 (Lost Impact) has <span class="neutral">neutral ↗</span> upwards and <span class="hero">hero →</span> forwards.</p>
+        <p>All S6 missions have <span class="dark">dark ↗</span> upwards and <span class="hero">hero ↘</span> downwards.</p>
+      </figcaption>
+    </figure>
+  </div>
+</details>
+
+<details open="true">
+  <summary>Misc thoughts</summary>
+
+  <p>I think the minimum number of missions required to reach all ten endings is 11. S1-M1, S2-M2, S3-M2, S4-M3, S5-M2 and S5-M4, S6-M1 to S6-M5.</p>
+
+  <p>The shape of the graph reminds me of Neural Networks, and <a href="https://en.wikipedia.org/wiki/Tur%C3%A1n_graph">Turán Graphs</a> for some reason. Probably the way we use indicator functions makes it look like we're putting multiple graphs together.</p>
+</details>
