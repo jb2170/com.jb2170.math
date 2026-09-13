@@ -184,6 +184,51 @@ def fib(n: int) -> int:
 
     <p>This is a neat trick of a strategy, that I only spotted after hand-computing all the values for the first strategy. You live and learn. See this as us discovering the trick from first principles, rather than wasted time.</p>
   </details>
+
+  <details open="true">
+    <summary>Strategy 3: Indicator Function partitioning of Sx for Sx-My</summary>
+
+    <p>
+      This is a hybrid combination of both diagrams from strategy 1's S4-M4 example, allowing us to track routes <q>tagged</q> by which mission My they pass through in a fixed stage of interest Sx. These <a href="https://en.wikipedia.org/wiki/Indicator_function">indicator function</a> tags, <code>I<sub>y</sub></code
+      >, can then be toggled (assigned a value of 0 or 1) at the end to indicate the number of routes that passed through Sx-My.
+    </p>
+
+    <p>Since strategy 1 used S4-M4 as an example, we will use S4 in this strategy's example.</p>
+    <p>
+      Starting in S4 with the number of routes from S1-M1 to S4-My, we multiply each S4-My value by an indicator function <code>I<sub>y</sub></code> and proceed forwards as though we are counting the total number of possible routes to S8-M1 (which we know is 326). This strategy allows us to see the number of routes through each S4-My simultaneously, instead of calculating the number of routes from S4-My to S8-M1 in an isolated way for each y as we did in strategy 1.
+    </p>
+
+    <figure>
+      <img src="./routes-from-s1-m1-to-each-indicator-s4-inc-s8.svg" />
+      <figcaption><p>We can observe, in real time as we travel rightwards through the graph, the accumulation of the number of possible routes, partitioned by which S4 mission they passed through.</p></figcaption>
+    </figure>
+
+    <p>Taking for example <code>I<sub>4</sub>=1</code> and <code>I<sub>y</sub>=0</code> otherwise we get our answer of 80 in the S8-M1 mission value.</p>
+
+    <figure>
+      <img src="./routes-from-s1-m1-to-s4-m4-to-s8-m1-inc-s8.svg" />
+      <figcaption>
+        <p>Setting <code>I<sub>4</sub>=1</code> and <code>I<sub>y</sub>=0</code> otherwise indicates the routes that pass through S4-M4, of which there are 80.</p>
+      </figcaption>
+    </figure>
+
+    <p>Effectively in strategy 1's S4-M4 example we had preemptively assigned <code>I<sub>4</sub>=1</code> and <code>I<sub>y</sub>=0</code> for <code>y!=4</code>, reset S4-M4's value from 5 to 1, and then re-multiplied by 5 (the number of routes from S1-M1 to S4-My) at the end.</p>
+
+    <p>
+      This strategy feels a bit bulkier than strategy 1 and 2, but it more explicitly partitions the 326 routes into <code>20I<sub>1</sub>+80I<sub>2</sub>+126I<sub>3</sub>+80I<sub>4</sub>+20I<sub>5</sub></code
+      >, rather than us just relying on intuition and non-constructive proofs that the equivalence classes sizes must sum to 326. I wanted to include indicator functions into this article since beginning writing it, and it took me until after writing strategies 1 and 2 to have enough examples to see how to structure strategy 3. It has been worth it I think.
+    </p>
+
+    <p>This strategy is also extensible in that we could use multiple families of indicator functions, one for each stage, to count the number of routes through multiple fixed missions.</p>
+
+    <figure>
+      <img src="./routes-from-s1-m1-to-s3-m1-to-s5-m3-to-s8-m1-inc-s8.svg" />
+      <figcaption>
+        <p>Computing the number of routes through both S3-M1 (Cryptic Castle) and S5-M3 (Iron Jungle), incase one wants to fight the <i>Egg Breaker</i> mini-boss twice (yes there's also an <i>Egg Breaker</i> at the end of Mad Matrix too).</p>
+        <p><q>You know what they say, the more the merrier!</q> - Dr Eggman as Egg Breaker after <a href="https://www.youtube.com/watch?v=HViQ3qHrhKE&t=60s">Mad Matrix</a>.</p>
+      </figcaption>
+    </figure>
+  </details>
 </details>
 
 <details open="true">
