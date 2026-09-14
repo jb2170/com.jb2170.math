@@ -1,0 +1,5 @@
+{
+  "Title": "Conic Section Umbrella",
+  "Description": "WIP",
+  "Date": "2026-09-01T04:00:00+01:00"
+}
