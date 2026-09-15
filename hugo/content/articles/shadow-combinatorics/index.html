@@ -229,6 +229,68 @@ def fib(n: int) -> int:
       </figcaption>
     </figure>
   </details>
+
+  <details open="true">
+    <summary>How many times for each objective in each mission?</summary>
+
+    <p>Finally let's compute how many times one would have to complete each <span class="dark">dark</span> <span class="neutral">neutral</span> and <span class="hero">hero</span> objective in each mission across the 326 stories.</p>
+
+    <p>
+      It doesn't take too much thinking to realize that the number of routes from S1-M1 to S8-M1 via Sx-My<sup><span class="dark">D</span></sup
+      >, that is the <span class="dark">dark</span> objective of mission Sx-My, is equal to the number of routes from S1-M1 to Sx-My multiplied by the number of routes from S(x+1)<sub><span class="dark">D</span></sub
+      >-My to S8-M1, where S(x+1)<sub><span class="dark">D</span></sub
+      >-My is the mission that follows Sx-My<sup><span class="dark">D</span></sup> ie the mission after completing the <span class="dark">dark</span> objective in Sx-My. Mutatis mutandis the same holds for Sx-My<sup><span class="neutral">N</span></sup> and Sx-My<sup><span class="hero">H</span></sup
+      >.
+    </p>
+    <p>As a side note I chose this <code>&lt;sup&gt;</code> - <code>&lt;sub&gt;</code> notation loosely based on <a href="https://en.wikipedia.org/wiki/Abstract_index_notation">tensor abstract index notation</a> and also <a href="https://info.sonicretro.org/List_of_Shadow_the_Hedgehog_Library_sequences">Sonic Retro's library sequences page</a>, but don't overthink it.</p>
+
+    <p>
+      So let's take our favourite example S4-M4 (Mad Matrix). S5<sub><span class="dark">D</span></sub
+      >-M4 is S5-M3 (Iron Jungle), S5<sub><span class="neutral">N</span></sub
+      >-M4 is S5-M4 (Space Gadget), and S5<sub><span class="hero">H</span></sub
+      >-M4 is S5-M5 (Lost Impact). The number of routes from S1-M1 to S4-M4 is 5. <code>5*<span class="dark">6</span>=<span class="dark">30</span></code
+      >, <code>5*<span class="neutral">6</span>=<span class="neutral">30</span></code
+      >, <code>5*<span class="hero">4</span>=<span class="hero">20</span></code
+      >. Completing the third diagram below:
+    </p>
+
+    <div style="display: flex; gap: 1ch">
+      <figure style="flex: 1">
+        <img src="./routes-from-s1-m1-to-each-inc-s8.svg" />
+        <figcaption>
+          <p>The number of routes from S1-M1 to each mission, previously calculated.</p>
+        </figcaption>
+      </figure>
+
+      <figure style="flex: 1">
+        <img src="./routes-from-each-to-s8-m1-inc-s8.svg" />
+        <figcaption>
+          <p>The number of routes from each mission to S8-M1, previously calculated.</p>
+        </figcaption>
+      </figure>
+    </div>
+
+    <figure>
+      <img src="./routes-including-each-per-objective-inc-s8.svg" />
+      <figcaption>
+        <p>The number of times each objective appears over the 326 stories.</p>
+      </figcaption>
+    </figure>
+
+    <p>And there we are! It looks like <span class="neutral">Shadow</span> is running against the <span class="dark">Republicans</span> and <span class="hero">Democrats</span>, and is only polling ahead in S1-M1 (Westopolis), S2-M2 (Glyphic Canyon), and S3-M2 (Prison Island)...</p>
+
+    <p>It also makes <em>computational</em> sense that for each mission the sum over the objectives of the number of times one has to play each objective totals to the number of times that one has to play through the mission full-stop.</p>
+    <ul>
+      <li>
+        the number of routes from S1-M1 to Sx-My multiplied by (the number of routes from S(x+1)<sub><span class="dark">D</span></sub
+        >-My + S(x+1)<sub><span class="neutral">N</span></sub
+        >-My + S(x+1)<sub><span class="hero">H</span></sub
+        >-My to S8-M1)
+      </li>
+      <li>the number of routes from S1-M1 to Sx-My multiplied by the number of routes from Sx-My to S8-M1</li>
+    </ul>
+    <p>are equal since we discovered in strategy 2 that the diagram showing the number of routes from Sx-My to S8-M1 forms a Pascal's-Triangle-esque structure from right to left.</p>
+  </details>
 </details>
 
 <details open="true">
