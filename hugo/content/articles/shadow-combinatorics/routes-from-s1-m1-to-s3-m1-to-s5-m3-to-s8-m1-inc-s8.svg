@@ -43,6 +43,7 @@
       .line-dark    { stroke: red;        }
       .line-neutral { stroke: chartreuse; }
       .line-hero    { stroke: blue;       }
+      .line-to-s8   { stroke: black;      }
 
       .text-mission {
         font-family: monospace;
@@ -316,16 +317,16 @@
     <g class="stage-8">
       <g class="credits">
         <use href="#rect-mission" class="mission" />
-        <line class="line faded" style="stroke: black;" x1="-395" y1="-435" x2="-105" y2="0" />
-        <line class="line faded" style="stroke: black;" x1="-395" y1="-365" x2="-105" y2="0" />
-        <line class="line" style="stroke: black;" x1="-395" y1="-235" x2="-105" y2="0" />
-        <line class="line" style="stroke: black;" x1="-395" y1="-165" x2="-105" y2="0" />
-        <line class="line" style="stroke: black;" x1="-395" y1=" -35" x2="-105" y2="0" />
-        <line class="line" style="stroke: black;" x1="-395" y1="  35" x2="-105" y2="0" />
-        <line class="line" style="stroke: black;" x1="-395" y1="+165" x2="-105" y2="0" />
-        <line class="line" style="stroke: black;" x1="-395" y1="+235" x2="-105" y2="0" />
-        <line class="line faded" style="stroke: black;" x1="-395" y1="+365" x2="-105" y2="0" />
-        <line class="line faded" style="stroke: black;" x1="-395" y1="+435" x2="-105" y2="0" />
+        <line class="line line-to-s8 faded" x1="-395" y1="-435" x2="-105" y2="0" />
+        <line class="line line-to-s8 faded" x1="-395" y1="-365" x2="-105" y2="0" />
+        <line class="line line-to-s8" x1="-395" y1="-235" x2="-105" y2="0" />
+        <line class="line line-to-s8" x1="-395" y1="-165" x2="-105" y2="0" />
+        <line class="line line-to-s8" x1="-395" y1=" -35" x2="-105" y2="0" />
+        <line class="line line-to-s8" x1="-395" y1="  35" x2="-105" y2="0" />
+        <line class="line line-to-s8" x1="-395" y1="+165" x2="-105" y2="0" />
+        <line class="line line-to-s8" x1="-395" y1="+235" x2="-105" y2="0" />
+        <line class="line line-to-s8 faded" x1="-395" y1="+365" x2="-105" y2="0" />
+        <line class="line line-to-s8 faded" x1="-395" y1="+435" x2="-105" y2="0" />
         <text class="text-mission">24</text>
       </g>
     </g>
