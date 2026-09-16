@@ -61,11 +61,11 @@
 
       .text-mission-final-boss {
         font-family: monospace;
-        font-size: 60px;
+        font-size: 40px;
         dominant-baseline: middle;
         text-anchor: middle;
         stroke: white;
-        stroke-width: 9px;
+        stroke-width: 6px;
         paint-order: stroke fill;
       }
     </style>
