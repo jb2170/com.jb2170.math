@@ -316,16 +316,16 @@
     <g class="stage-8">
       <g class="credits">
         <use href="#rect-mission" class="mission" />
-        <line class="line" style="stroke: black;" id="line-up" x1="-395" y1="-435" x2="-105" y2="0" />
-        <line class="line" style="stroke: black;" id="line-up" x1="-395" y1="-365" x2="-105" y2="0" />
-        <line class="line" style="stroke: black;" id="line-up" x1="-395" y1="-235" x2="-105" y2="0" />
-        <line class="line" style="stroke: black;" id="line-up" x1="-395" y1="-165" x2="-105" y2="0" />
-        <line class="line" style="stroke: black;" id="line-up" x1="-395" y1=" -35" x2="-105" y2="0" />
-        <line class="line" style="stroke: black;" id="line-up" x1="-395" y1="  35" x2="-105" y2="0" />
-        <line class="line" style="stroke: black;" id="line-up" x1="-395" y1="+165" x2="-105" y2="0" />
-        <line class="line" style="stroke: black;" id="line-up" x1="-395" y1="+235" x2="-105" y2="0" />
-        <line class="line" style="stroke: black;" id="line-up" x1="-395" y1="+365" x2="-105" y2="0" />
-        <line class="line" style="stroke: black;" id="line-up" x1="-395" y1="+435" x2="-105" y2="0" />
+        <line class="line" style="stroke: black;" x1="-395" y1="-435" x2="-105" y2="0" />
+        <line class="line" style="stroke: black;" x1="-395" y1="-365" x2="-105" y2="0" />
+        <line class="line" style="stroke: black;" x1="-395" y1="-235" x2="-105" y2="0" />
+        <line class="line" style="stroke: black;" x1="-395" y1="-165" x2="-105" y2="0" />
+        <line class="line" style="stroke: black;" x1="-395" y1=" -35" x2="-105" y2="0" />
+        <line class="line" style="stroke: black;" x1="-395" y1="  35" x2="-105" y2="0" />
+        <line class="line" style="stroke: black;" x1="-395" y1="+165" x2="-105" y2="0" />
+        <line class="line" style="stroke: black;" x1="-395" y1="+235" x2="-105" y2="0" />
+        <line class="line" style="stroke: black;" x1="-395" y1="+365" x2="-105" y2="0" />
+        <line class="line" style="stroke: black;" x1="-395" y1="+435" x2="-105" y2="0" />
         <text class="text-mission">326</text>
       </g>
     </g>
