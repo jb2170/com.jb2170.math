@@ -21,7 +21,7 @@
       .pure-hero .final-dark .mission-final-boss { fill: royalblue;        }
       .pure-hero .final-hero .mission-final-boss { fill: mediumblue;       }
 
-      .line         { stroke-width: 6px;  }
+      .line         { stroke-width: 6;    }
       .line-dark    { stroke: red;        }
       .line-neutral { stroke: chartreuse; }
       .line-hero    { stroke: blue;       }
