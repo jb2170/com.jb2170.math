@@ -3,7 +3,7 @@
   <!-- Source:  math.jb2170.com -->
   <!-- License: CC-BY-NC-SA-4.0 -->
   <defs>
-    <style>
+    <style type="text/css">
       .stage-1 { transform: translate( 300px, 0px); }
       .stage-2 { transform: translate( 600px, 0px); }
       .stage-3 { transform: translate( 900px, 0px); }
