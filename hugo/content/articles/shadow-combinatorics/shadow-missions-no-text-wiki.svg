@@ -56,8 +56,8 @@
     <line class="line" id="line-forward" x1="105" y1="0" x2="195" y2="0" />
     <line class="line" id="line-down" x1="105" y1="+70" x2="195" y2="+130" />
 
-    <line class="line" id="final-line-up" x1="105" y1="-15" x2="195" y2="-35" />
-    <line class="line" id="final-line-down" x1="105" y1="+15" x2="195" y2="+35" />
+    <line class="line" id="final-line-up" x1="105" y1="-35" x2="195" y2="-35" />
+    <line class="line" id="final-line-down" x1="105" y1="+35" x2="195" y2="+35" />
   </defs>
 
   <g>
