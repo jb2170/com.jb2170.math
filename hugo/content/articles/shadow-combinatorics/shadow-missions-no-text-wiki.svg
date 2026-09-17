@@ -11,7 +11,6 @@
       .stage-5 { transform: translate(1500px, 0px); }
       .stage-6 { transform: translate(1800px, 0px); }
       .stage-7 { transform: translate(2100px, 0px); }
-      .stage-8 { transform: translate(2600px, 0px); }
 
       .pure-dark { transform: translate(0px, -400px); }
       .semi-dark { transform: translate(0px, -200px); }
@@ -38,13 +37,11 @@
       .pure-hero .mission                        { fill: darkblue;         }
       .pure-hero .final-dark .mission-final-boss { fill: royalblue;        }
       .pure-hero .final-hero .mission-final-boss { fill: mediumblue;       }
-      .credits   .mission                        { fill: pink;             }
 
       .line         { stroke-width: 6px;  }
       .line-dark    { stroke: red;        }
       .line-neutral { stroke: chartreuse; }
       .line-hero    { stroke: blue;       }
-      .line-to-s8   { stroke: black;      }
 
       .text-mission {
         font-family: monospace;
@@ -67,7 +64,6 @@
       }
 
       text { display: none; }
-      .stage-8 { display: none; }
     </style>
 
     <rect id="rect-mission" width="200" height="120" x="-100" y="-60" />
@@ -313,23 +309,6 @@
           <use href="#rect-mission-final-boss" class="mission-final-boss" />
           <text class="text-mission-final-boss">Black Doom</text>
         </g>
-      </g>
-    </g>
-
-    <g class="stage-8">
-      <g class="credits">
-        <use href="#rect-mission" class="mission" />
-        <line class="line line-to-s8" x1="-395" y1="-435" x2="-105" y2="0" />
-        <line class="line line-to-s8" x1="-395" y1="-365" x2="-105" y2="0" />
-        <line class="line line-to-s8" x1="-395" y1="-235" x2="-105" y2="0" />
-        <line class="line line-to-s8" x1="-395" y1="-165" x2="-105" y2="0" />
-        <line class="line line-to-s8" x1="-395" y1=" -35" x2="-105" y2="0" />
-        <line class="line line-to-s8" x1="-395" y1="  35" x2="-105" y2="0" />
-        <line class="line line-to-s8" x1="-395" y1="+165" x2="-105" y2="0" />
-        <line class="line line-to-s8" x1="-395" y1="+235" x2="-105" y2="0" />
-        <line class="line line-to-s8" x1="-395" y1="+365" x2="-105" y2="0" />
-        <line class="line line-to-s8" x1="-395" y1="+435" x2="-105" y2="0" />
-        <text class="text-mission">Credits</text>
       </g>
     </g>
   </g>
