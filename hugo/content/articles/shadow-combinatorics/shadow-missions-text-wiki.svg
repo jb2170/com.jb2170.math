@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="2200" height="1000" viewBox="100 -500 2200 1000">
+  <!-- Source:  math.jb2170.com -->
+  <!-- License: CC-BY-SA-4.0    -->
+  <defs>
+    <style type="text/css">
+      .first     .mission                        { fill: gold;             }
+      .pure-dark .mission                        { fill: firebrick;        }
+      .pure-dark .final-dark .mission-final-boss { fill: darkred;          }
+      .pure-dark .final-hero .mission-final-boss { fill: indianred;        }
+      .semi-dark .mission                        { fill: darkorange;       }
+      .semi-dark .final-dark .mission-final-boss { fill: chocolate;        }
+      .semi-dark .final-hero .mission-final-boss { fill: orange;           }
+      .neutral   .mission                        { fill: mediumseagreen;   }
+      .neutral   .final-dark .mission-final-boss { fill: yellowgreen;      }
+      .neutral   .final-hero .mission-final-boss { fill: greenyellow;      }
+      .semi-hero .mission                        { fill: cornflowerblue;   }
+      .semi-hero .final-dark .mission-final-boss { fill: mediumaquamarine; }
+      .semi-hero .final-hero .mission-final-boss { fill: skyblue;          }
+      .pure-hero .mission                        { fill: darkblue;         }
+      .pure-hero .final-dark .mission-final-boss { fill: royalblue;        }
+      .pure-hero .final-hero .mission-final-boss { fill: mediumblue;       }
+
+      .mission, .mission-final-boss {
+        stroke: black;
+        stroke-width: 4;
+      }
+
+      .line         { stroke-width: 6;    }
+      .line-dark    { stroke: red;        }
+      .line-neutral { stroke: chartreuse; }
+      .line-hero    { stroke: blue;       }
+
+      .text-mission {
+        font-family: monospace;
+        font-size: 30px;
+        dominant-baseline: middle;
+        text-anchor: middle;
+        stroke: white;
+        stroke-width: 5px;
+        paint-order: stroke fill;
+      }
+
+      .text-mission-final-boss {
+        font-family: monospace;
+        font-size: 18px;
+        dominant-baseline: middle;
+        text-anchor: middle;
+        stroke: white;
+        stroke-width: 3px;
+        paint-order: stroke fill;
+      }
+    </style>
+
+    <rect id="rect-mission" width="200" height="120" x="-100" y="-60" />
+    <rect id="rect-mission-final-boss" width="200" height="50" x="-100" y="-25" />
+
+    <line class="line" id="line-up" x1="105" y1="-70" x2="195" y2="-130" />
+    <line class="line" id="line-forward" x1="105" y1="0" x2="195" y2="0" />
+    <line class="line" id="line-down" x1="105" y1="+70" x2="195" y2="+130" />
+
+    <line class="line" id="final-line-up" x1="105" y1="-35" x2="195" y2="-35" />
+    <line class="line" id="final-line-down" x1="105" y1="+35" x2="195" y2="+35" />
+  </defs>
+
+  <g>
+    <g class="stage-1" transform="translate(300 0)">
+      <g class="first three-ways" transform="translate(0 0)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#line-up" class="line-dark" />
+        <use href="#line-forward" class="line-neutral" />
+        <use href="#line-down" class="line-hero" />
+        <text class="text-mission">Westopolis</text>
+      </g>
+    </g>
+
+    <g class="stage-2" transform="translate(600 0)">
+      <g class="semi-dark two-ways" transform="translate(0 -200)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#line-forward" class="line-dark" />
+        <use href="#line-down" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Digital</tspan><tspan x="0" dy="+1.2em">Circuit</tspan></text>
+      </g>
+
+      <g class="neutral three-ways" transform="translate(0 0)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#line-up" class="line-dark" />
+        <use href="#line-forward" class="line-neutral" />
+        <use href="#line-down" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Glyphic</tspan><tspan x="0" dy="+1.2em">Canyon</tspan></text>
+      </g>
+
+      <g class="semi-hero two-ways" transform="translate(0 200)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#line-up" class="line-dark" />
+        <use href="#line-forward" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Lethal</tspan><tspan x="0" dy="+1.2em">Highway</tspan></text>
+      </g>
+    </g>
+
+    <g class="stage-3" transform="translate(900 0)">
+      <g class="semi-dark three-ways" transform="translate(0 -200)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#line-up" class="line-dark" />
+        <use href="#line-forward" class="line-neutral" />
+        <use href="#line-down" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Cryptic</tspan><tspan x="0" dy="+1.2em">Castle</tspan></text>
+      </g>
+
+      <g class="neutral three-ways" transform="translate(0 0)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#line-up" class="line-dark" />
+        <use href="#line-forward" class="line-neutral" />
+        <use href="#line-down" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Prison</tspan><tspan x="0" dy="+1.2em">Island</tspan></text>
+      </g>
+
+      <g class="semi-hero three-ways" transform="translate(0 200)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#line-up" class="line-dark" />
+        <use href="#line-forward" class="line-neutral" />
+        <use href="#line-down" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Circus</tspan><tspan x="0" dy="+1.2em">Park</tspan></text>
+      </g>
+    </g>
+
+    <g class="stage-4" transform="translate(1200 0)">
+      <g class="pure-dark two-ways" transform="translate(0 -400)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#line-forward" class="line-dark" />
+        <use href="#line-down" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Central</tspan><tspan x="0" dy="+1.2em">City</tspan></text>
+      </g>
+
+      <g class="semi-dark three-ways" transform="translate(0 -200)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#line-up" class="line-dark" />
+        <use href="#line-forward" class="line-neutral" />
+        <use href="#line-down" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">The</tspan><tspan x="0" dy="+1.2em">Doom</tspan></text>
+      </g>
+
+      <g class="neutral three-ways" transform="translate(0 0)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#line-up" class="line-dark" />
+        <use href="#line-forward" class="line-neutral" />
+        <use href="#line-down" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Sky</tspan><tspan x="0" dy="+1.2em">Troops</tspan></text>
+      </g>
+
+      <g class="semi-hero three-ways" transform="translate(0 200)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#line-up" class="line-dark" />
+        <use href="#line-forward" class="line-neutral" />
+        <use href="#line-down" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Mad</tspan><tspan x="0" dy="+1.2em">Matrix</tspan></text>
+      </g>
+
+      <g class="pure-hero two-ways" transform="translate(0 400)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#line-up" class="line-dark" />
+        <use href="#line-forward" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Death</tspan><tspan x="0" dy="+1.2em">Ruins</tspan></text>
+      </g>
+    </g>
+
+    <g class="stage-5" transform="translate(1500 0)">
+      <g class="pure-dark two-ways" transform="translate(0 -400)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#line-forward" class="line-dark" />
+        <use href="#line-down" class="line-neutral" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">The</tspan><tspan x="0" dy="+1.2em">ARK</tspan></text>
+      </g>
+
+      <g class="semi-dark three-ways" transform="translate(0 -200)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#line-up" class="line-dark" />
+        <use href="#line-forward" class="line-neutral" />
+        <use href="#line-down" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Air</tspan><tspan x="0" dy="+1.2em">Fleet</tspan></text>
+      </g>
+
+      <g class="neutral three-ways" transform="translate(0 0)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#line-up" class="line-dark" />
+        <use href="#line-forward" class="line-neutral" />
+        <use href="#line-down" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Iron</tspan><tspan x="0" dy="+1.2em">Jungle</tspan></text>
+      </g>
+
+      <g class="semi-hero three-ways" transform="translate(0 200)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#line-up" class="line-dark" />
+        <use href="#line-forward" class="line-neutral" />
+        <use href="#line-down" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Space</tspan><tspan x="0" dy="+1.2em">Gadget</tspan></text>
+      </g>
+
+      <g class="pure-hero two-ways" transform="translate(0 400)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#line-up" class="line-neutral" />
+        <use href="#line-forward" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Lost</tspan><tspan x="0" dy="+1.2em">Impact</tspan></text>
+      </g>
+    </g>
+
+    <g class="stage-6" transform="translate(1800 0)">
+      <g class="pure-dark two-ways" transform="translate(0 -400)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#final-line-up" class="line-dark" />
+        <use href="#final-line-down" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">GUN</tspan><tspan x="0" dy="+1.2em">Fortress</tspan></text>
+      </g>
+
+      <g class="semi-dark two-ways" transform="translate(0 -200)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#final-line-up" class="line-dark" />
+        <use href="#final-line-down" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Black</tspan><tspan x="0" dy="+1.2em">Comet</tspan></text>
+      </g>
+
+      <g class="neutral two-ways" transform="translate(0 0)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#final-line-up" class="line-dark" />
+        <use href="#final-line-down" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Lava</tspan><tspan x="0" dy="+1.2em">Shelter</tspan></text>
+      </g>
+
+      <g class="semi-hero two-ways" transform="translate(0 200)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#final-line-up" class="line-dark" />
+        <use href="#final-line-down" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Cosmic</tspan><tspan x="0" dy="+1.2em">Fall</tspan></text>
+      </g>
+
+      <g class="pure-hero two-ways" transform="translate(0 400)">
+        <use href="#rect-mission" class="mission" />
+        <use href="#final-line-up" class="line-dark" />
+        <use href="#final-line-down" class="line-hero" />
+        <text class="text-mission"><tspan x="0" dy="-0.6em">Final</tspan><tspan x="0" dy="+1.2em">Haunt</tspan></text>
+      </g>
+    </g>
+
+    <g class="stage-7" transform="translate(2100 0)">
+      <g class="pure-dark" transform="translate(0 -400)">
+        <g class="final-dark" transform="translate(0 -35)">
+          <use href="#rect-mission-final-boss" class="mission-final-boss" />
+          <text class="text-mission-final-boss">Sonic and Diablon</text>
+        </g>
+        <g class="final-hero" transform="translate(0 35)">
+          <use href="#rect-mission-final-boss" class="mission-final-boss" />
+          <text class="text-mission-final-boss">Black Doom</text>
+        </g>
+      </g>
+
+      <g class="semi-dark" transform="translate(0 -200)">
+        <g class="final-dark" transform="translate(0 -35)">
+          <use href="#rect-mission-final-boss" class="mission-final-boss" />
+          <text class="text-mission-final-boss">Sonic and Diablon</text>
+        </g>
+        <g class="final-hero" transform="translate(0 35)">
+          <use href="#rect-mission-final-boss" class="mission-final-boss" />
+          <text class="text-mission-final-boss">Egg Dealer</text>
+        </g>
+      </g>
+
+      <g class="neutral" transform="translate(0 0)">
+        <g class="final-dark" transform="translate(0 -35)">
+          <use href="#rect-mission-final-boss" class="mission-final-boss" />
+          <text class="text-mission-final-boss">Egg Dealer</text>
+        </g>
+        <g class="final-hero" transform="translate(0 35)">
+          <use href="#rect-mission-final-boss" class="mission-final-boss" />
+          <text class="text-mission-final-boss">Egg Dealer</text>
+        </g>
+      </g>
+
+      <g class="semi-hero" transform="translate(0 200)">
+        <g class="final-dark" transform="translate(0 -35)">
+          <use href="#rect-mission-final-boss" class="mission-final-boss" />
+          <text class="text-mission-final-boss">Egg Dealer</text>
+        </g>
+        <g class="final-hero" transform="translate(0 35)">
+          <use href="#rect-mission-final-boss" class="mission-final-boss" />
+          <text class="text-mission-final-boss">Black Doom</text>
+        </g>
+      </g>
+
+      <g class="pure-hero" transform="translate(0 400)">
+        <g class="final-dark" transform="translate(0 -35)">
+          <use href="#rect-mission-final-boss" class="mission-final-boss" />
+          <text class="text-mission-final-boss">Sonic and Diablon</text>
+        </g>
+        <g class="final-hero" transform="translate(0 35)">
+          <use href="#rect-mission-final-boss" class="mission-final-boss" />
+          <text class="text-mission-final-boss">Black Doom</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+</svg>
