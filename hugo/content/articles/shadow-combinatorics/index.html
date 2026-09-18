@@ -28,7 +28,7 @@
   }
 </style>
 
-<p><a href="https://en.wikipedia.org/wiki/Shadow_the_Hedgehog_(video_game)">Shadow The Hedgehog (2005)</a> allows the player to choose Shadow's destiny.</p>
+<p>{{< cite/inline "Shadow The Hedgehog (2005)" "https://en.wikipedia.org/wiki/Shadow_the_Hedgehog_(video_game)" >}} allows the player to choose Shadow's destiny.</p>
 <p>After surviving his fall from the Space Colony ARK at the end of Sonic Adventure 2, Shadow awakes with amnesia, unable to remember his past. In each mission one chooses from a <span class="dark">Dark</span>, <span class="neutral">Neutral</span>, or <span class="hero">Hero</span> objective when available, to fill in details of Shadow's past and present, and progress to the next stage.</p>
 <p>This leads to a story progression graph across the possible missions looking as follows:</p>
 
@@ -65,8 +65,8 @@ def fib(n: int) -> int:
   <details open="true">
     <summary>Second attempt: work forwards</summary>
 
-    <p>A correct approach is to work <em>forwards</em> through the stages, counting how many ways there are to reach a mission by summing the number of ways to reach each <q>parent</q> mission from the previous stage that is connected to the mission we are interested in. It's a bit like <a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle">Pascal's Triangle</a>.</p>
-    <p>We start from S1-M1 (Westopolis), which has a postulated value of 1. Every story starts from here, probably making it canon in the Sonic universe. It is for this reason (and consistency with another <a href="https://commons.wikimedia.org/wiki/File:ShadowTheHedgehogMap_alignments.svg">Wikipedia Image</a>) that I have coloured it specially as yellow, even though it is inline with the rest of the <q>neutral</q> missions.</p>
+    <p>A correct approach is to work <em>forwards</em> through the stages, counting how many ways there are to reach a mission by summing the number of ways to reach each <q>parent</q> mission from the previous stage that is connected to the mission we are interested in. It's a bit like {{< cite/inline "Pascal's Triangle" "https://en.wikipedia.org/wiki/Pascal%27s_triangle" >}}.</p>
+    <p>We start from S1-M1 (Westopolis), which has a postulated value of 1. Every story starts from here, probably making it canon in the Sonic universe. It is for this reason (and consistency with another {{< cite/inline "Wikipedia Image" "https://commons.wikimedia.org/wiki/File:ShadowTheHedgehogMap_alignments.svg" >}}) that I have coloured it specially as yellow, even though it is inline with the rest of the <q>neutral</q> missions.</p>
     <p>Each S2 mission has one parent, S1-M1.</p>
     <p>S3-M1 has two parents, S3-M2 has three parents, and S3-M3 has two parents. Since every parent has a value of 1, these missions also have pretty trivial values.</p>
     <p>S4 is where things start to get interesting, as we are no longer just effectively counting the number of parents; we are properly summing the values of the parents. Look below at the full diagram.</p>
@@ -88,7 +88,7 @@ def fib(n: int) -> int:
     </figure>
 
     <p>And there we have it, <b>326</b>, our answer to how many possible stories there are!</p>
-    <p>Fun fact: the developers of Shadow The Hedgehog gave each one of them a title. A full list is available on <a href="https://info.sonicretro.org/List_of_Shadow_the_Hedgehog_Library_sequences">Sonic Retro</a>. My personal favourite ending is <a href="https://www.youtube.com/watch?v=eRtJkYgSa7I">semi-dark hero</a>, very Machiavellian! Story route number 004 which leads to this is titled <q>The Ultimate Ego</q>.</p>
+    <p>Fun fact: the developers of Shadow The Hedgehog gave each one of them a title. A full list is available on {{< cite/inline "Sonic Retro" "https://info.sonicretro.org/List_of_Shadow_the_Hedgehog_Library_sequences" >}}. My personal favourite ending is {{< cite/inline "semi-dark hero" "https://www.youtube.com/watch?v=eRtJkYgSa7I" >}}, very Machiavellian! Story route number 004 which leads to this is titled <q>The Ultimate Ego</q>.</p>
     <p>Thankfully one only has to complete each of the ten S7 bosses at least once to unlock <q>The Last Way</q>, the eleventh, canonical ending to the game. One is not obliged to play through Westopolis 326 times...</p>
   </details>
 </details>
@@ -139,7 +139,7 @@ def fib(n: int) -> int:
       </figure>
     </div>
 
-    <p>and taking the element-wise product (<a href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard product</a>?) of these two diagrams gives us our result.</p>
+    <p>and taking the element-wise product ({{< cite/inline "Hadamard product" "https://en.wikipedia.org/wiki/Hadamard_product_(matrices)" >}}?) of these two diagrams gives us our result.</p>
 
     <figure>
       <img src="./routes-including-each-inc-s8.svg" />
@@ -189,7 +189,7 @@ def fib(n: int) -> int:
     <summary>Strategy 3: Indicator Function partitioning of Sx for Sx-My</summary>
 
     <p>
-      This is a hybrid combination of both diagrams from strategy 1's S4-M4 example, allowing us to track routes <q>tagged</q> by which mission My they pass through in a fixed stage of interest Sx. These <a href="https://en.wikipedia.org/wiki/Indicator_function">indicator function</a> tags, <code>I<sub>y</sub></code
+      This is a hybrid combination of both diagrams from strategy 1's S4-M4 example, allowing us to track routes <q>tagged</q> by which mission My they pass through in a fixed stage of interest Sx. These {{< cite/inline "indicator function" "https://en.wikipedia.org/wiki/Indicator_function" >}} tags, <code>I<sub>y</sub></code
       >, can then be toggled (assigned a value of 0 or 1) at the end to indicate the number of routes that passed through Sx-My.
     </p>
 
@@ -225,7 +225,7 @@ def fib(n: int) -> int:
       <img src="./routes-from-s1-m1-to-s3-m1-to-s5-m3-to-s8-m1-inc-s8.svg" />
       <figcaption>
         <p>Computing the number of routes through both S3-M1 (Cryptic Castle) and S5-M3 (Iron Jungle), incase one wants to fight the <i>Egg Breaker</i> mini-boss twice (yes there's also an <i>Egg Breaker</i> at the end of Mad Matrix too).</p>
-        <p><q>You know what they say, the more the merrier!</q> - Dr Eggman as Egg Breaker after <a href="https://www.youtube.com/watch?v=HViQ3qHrhKE&t=60s">Mad Matrix</a>.</p>
+        <p><q>You know what they say, the more the merrier!</q> - Dr Eggman as Egg Breaker after {{< cite/inline "Mad Matrix" "https://www.youtube.com/watch?v=HViQ3qHrhKE&t=60s" >}}.</p>
       </figcaption>
     </figure>
   </details>
@@ -242,7 +242,7 @@ def fib(n: int) -> int:
       >-My is the mission that follows Sx-My<sup><span class="dark">D</span></sup> ie the mission after completing the <span class="dark">dark</span> objective in Sx-My. Mutatis mutandis the same holds for Sx-My<sup><span class="neutral">N</span></sup> and Sx-My<sup><span class="hero">H</span></sup
       >.
     </p>
-    <p>As a side note I chose this <code>&lt;sup&gt;</code> - <code>&lt;sub&gt;</code> notation loosely based on <a href="https://en.wikipedia.org/wiki/Abstract_index_notation">tensor abstract index notation</a> and also <a href="https://info.sonicretro.org/List_of_Shadow_the_Hedgehog_Library_sequences">Sonic Retro's library sequences page</a>, but don't overthink it.</p>
+    <p>As a side note I chose this <code>&lt;sup&gt;</code> - <code>&lt;sub&gt;</code> notation loosely based on {{< cite/inline "tensor abstract index notation" "https://en.wikipedia.org/wiki/Abstract_index_notation" >}} and also {{< cite/inline "Sonic Retro's library sequences page" "https://info.sonicretro.org/List_of_Shadow_the_Hedgehog_Library_sequences" >}}, but don't overthink it.</p>
 
     <p>
       So let's take our favourite example S4-M4 (Mad Matrix). S5<sub><span class="dark">D</span></sub
@@ -323,16 +323,18 @@ def fib(n: int) -> int:
 
 <details open="true">
   <summary>Misc thoughts</summary>
-  <p>22 normal missions: 11 with 3 objectives, 11 with 2 objectives, 55 objectives in total. 10 final boss missions, and 7 mini bosses. That totals to 72 ranks, but the <a href="https://www.reddit.com/r/SonicTheHedgehog/comments/hx1n3e/shadow_the_hedgehog_a_ranked_all_71_missions/">select screen</a> only shows 71? It's because both versions of Egg Dealer after Lava Shelter are treated as the same rank, even though there's two different endings.</p>
+  <p>22 normal missions: 11 with 3 objectives, 11 with 2 objectives, 55 objectives in total. 10 final boss missions, and 7 mini bosses. That totals to 72 ranks, but the {{< cite/inline "select screen" "https://www.reddit.com/r/SonicTheHedgehog/comments/hx1n3e/shadow_the_hedgehog_a_ranked_all_71_missions/" >}} only shows 71? It's because both versions of Egg Dealer after Lava Shelter are treated as the same rank, even though there's two different endings.</p>
 
   <p>I think the minimum number of missions required to reach all ten endings is 11. S1-M1, S2-M2, S3-M2, S4-M3, S5-M2 and S5-M4, S6-M1 to S6-M5.</p>
 
-  <p>The shape of the graph reminds me of Neural Networks, and <a href="https://en.wikipedia.org/wiki/Tur%C3%A1n_graph">Turán Graphs</a> for some reason. Probably the way we use indicator functions makes it look like we're putting multiple graphs together.</p>
+  <p>The shape of the graph reminds me of Neural Networks, and {{< cite/inline "Turán Graphs" "https://en.wikipedia.org/wiki/Tur%C3%A1n_graph" >}} for some reason. Probably the way we use indicator functions makes it look like we're putting multiple graphs together.</p>
 </details>
 
 <details open="true">
   <summary>Licensing</summary>
 
   <p>These diagrams were created by me, jb2170, hereby licensed under CC-BY-NC-SA-4.0. Have fun!</p>
-  <p>Two variant images committed under <a href="https://github.com/jb2170/com.jb2170.math/tree/archive/jb2170/misc/shadow-combinatorics-wikipedia/hugo/content/articles/shadow-combinatorics">this</a> GitHub tag are licensed under CC-BY-SA-4.0 and uploaded to Wikimedia Commons <a href="https://commons.wikimedia.org/wiki/File:Shadow_The_Hedgehog_mission_map_(blank).svg">here (blank)</a> and <a href="https://commons.wikimedia.org/wiki/File:Shadow_The_Hedgehog_mission_map_(en).svg">here (en)</a>. I usually like to use NC in my licensing to keep everything free-as-in-freedom, but Wikimedia Commons demands not to use it, fine.</p>
+  <p>Two variant images committed under {{< cite/inline "this" "https://github.com/jb2170/com.jb2170.math/tree/archive/jb2170/misc/shadow-combinatorics-wikipedia/hugo/content/articles/shadow-combinatorics" >}} GitHub tag are licensed under CC-BY-SA-4.0 and uploaded to Wikimedia Commons {{< cite/inline "here (blank)" "https://commons.wikimedia.org/wiki/File:Shadow_The_Hedgehog_mission_map_(blank).svg" >}} and {{< cite/inline "here (en)" "https://commons.wikimedia.org/wiki/File:Shadow_The_Hedgehog_mission_map_(en).svg" >}}. I usually like to use NC in my licensing to keep everything free-as-in-freedom, but Wikimedia Commons demands not to use it, fine.</p>
 </details>
+
+{{< cite/references >}}
