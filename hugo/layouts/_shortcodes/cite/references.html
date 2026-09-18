@@ -1,0 +1,26 @@
+{{- /*  Add a references section wrapped in a <details>              */ -}}
+{{- /*  that shows all cite/{inline,box} citations.                  */ -}}
+{{- /*  All 'cite/inline' boxes are shown when #references is open.  */ -}}
+
+{{- /*  Takes in no parameters      */ -}}
+{{- /*  eg {{< cite/references >}}  */ -}}
+
+<details id="references">
+  <summary class="big-summary">References</summary>
+
+  {{ with .Page.Scratch.Get "references" }}
+  <table>
+    <tbody>
+      {{ range . }}
+      <tr id="ref-{{ .idx }}">
+        <td><a href="#cite-{{ .idx }}">[{{ .idx }}]</a></td>
+        <td>-</td>
+        <td><a href="{{ .ref }}">{{ .ref }}</a></td>
+      </tr>
+      {{ end }}
+    </tbody>
+  </table>
+  {{ else }}
+  <p>{{ partial "text-when-missing.html" "no references" }}</p>
+  {{ end }}
+</details>

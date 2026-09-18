@@ -1,0 +1,22 @@
+{{- /*  Add plain text with a shown citation box [456] that contributes  */ -}}
+{{- /*  to the 'cite/references' shortcode contents.                     */ -}}
+
+{{- /*  Takes in positionals 'text' and 'ref'  */ -}}
+{{- /*  eg {{< cite/box "William II of Orange" "https://en.wikipedia.org/wiki/William_II_of_Orange" >}}  */ -}}
+
+{{- if not (.Page.Store.Get "references") -}}
+  {{- /*  touch 'references' slice  */ -}}
+  {{- .Page.Store.Set "references" slice -}}
+{{- end -}}
+
+{{- $idx := add (len (.Page.Store.Get "references")) 1 -}}
+{{- /*  1 more than current length for 1-indexing  */ -}}
+{{- $text := .Get 0 -}}
+{{- $ref := .Get 1 -}}
+
+{{- /*  store reference in .Page.Store  */ -}}
+{{- .Page.Store.Add "references" (slice (dict "idx" $idx "text" $text "ref" $ref)) -}}
+
+{{- /*  render inline citation number  */ -}}
+<span id="cite-{{ $idx }}">{{ $text }}<sup><a href="#ref-{{ $idx }}">[{{ $idx }}]</a></sup></span>
+{{- "" -}}

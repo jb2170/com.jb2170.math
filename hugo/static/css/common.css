@@ -143,6 +143,41 @@ figure video {
   box-sizing: border-box; /* include padding */
 }
 
+/* <details> styling */
+
+details details {
+  margin-inline-start: 2ch;
+}
+
+.big-summary {
+  font-size: 1.5em; /* Match h2 size. */
+  font-weight: bold;
+  text-decoration: underline double;
+}
+
+/* "_shortcodes/cite/*.html" */
+
+.cite-inline sup {
+  line-height: 0; /* stop <sup> from affecting the line spacing */
+  display: none; /* hide inline citation boxes by default */
+}
+
+body:has(#references[open]) .cite-inline sup {
+  display: inline; /* show inline citation boxes when any citation or reference is the current url '#target' */
+}
+
+#references table {
+  margin-block: 1em;
+}
+
+#references tr {
+  vertical-align: top;
+}
+
+#references td:first-child {
+  text-align: end;
+}
+
 /* "_shortcodes/gallery.html" */
 
 .gallery {
