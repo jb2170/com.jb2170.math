@@ -1,0 +1,923 @@
+{ "Title": "Block Matrix Multiplication", "Description": "It's like a matrix of matrices" }
+
+<style>
+  details {
+    margin-block: 1em;
+  }
+
+  .monospace-table {
+    font-family: monospace;
+    font-size: large;
+    border-spacing: 0.5ch;
+    text-align: center;
+  }
+
+  .monospace-table td {
+    width: 2ch;
+    height: 2ch;
+  }
+
+  .matrix-a {
+    background-color: yellowgreen;
+  }
+
+  .matrix-b {
+    background-color: violet;
+  }
+
+  .matrix-c {
+    background-color: black;
+  }
+
+  .matrix-d {
+    background-color: black;
+  }
+
+  .matrix-e {
+    background-color: lime;
+  }
+
+  .matrix-f {
+    background-color: pink;
+  }
+
+  .matrix-mult {
+    margin-block: 1em;
+    display: flex;
+    align-items: start;
+    gap: 2ch;
+  }
+</style>
+
+<p>What if we partition matrix multiplication along the axis of contraction?</p>
+<p>We segment the <q>inner</q> matrix vertically and the <q>outer</q> matrix horizontally, where inner and outer mean that when we use these matrices, we apply the inner one first, then the outer. In English notation we compose right-to-left, <span>$$M_2 M_1 v$$</span>.</p>
+
+<details open="true">
+  <summary class="big-summary">Segmented Vector</summary>
+  <p>For simplicity's sake let's start with a matrix and vector.</p>
+
+  <p><span>$$(A B) . (v_1 v_2)^T = A v_1 + B v_2$$</span></p>
+
+  <div class="matrix-mult">
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- <div><code>.</code></div> -->
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-e"></td>
+        </tr>
+        <tr>
+          <td class="matrix-e"></td>
+        </tr>
+        <tr>
+          <td class="matrix-e"></td>
+        </tr>
+        <tr>
+          <td class="matrix-e"></td>
+        </tr>
+        <tr>
+          <td class="matrix-f"></td>
+        </tr>
+        <tr>
+          <td class="matrix-f"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div></div>
+    <div><code>=</code></div>
+    <div></div>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- <div><code>.</code></div> -->
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-e"></td>
+        </tr>
+        <tr>
+          <td class="matrix-e"></td>
+        </tr>
+        <tr>
+          <td class="matrix-e"></td>
+        </tr>
+        <tr>
+          <td class="matrix-e"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div><code>+</code></div>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-f"></td>
+        </tr>
+        <tr>
+          <td class="matrix-f"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>For this to make sense, the width of A and the height of v_1 have to be equal, as do the width of B and the height of v_2.</p>
+
+  <p>An example use being 4x4 matrices for OpenGL (or any graphics programming or geometry manipulation in general). We can promote <span>$$\R^3$$</span> vectors <span>$$\vec{v}$$</span> to <span>$$\R^4$$</span> vectors by setting the fourth, <q>w</q>, component to <span>$$1$$</span>, and we can maintain this <span>$$1$$</span> under 4x4 matrix transformations by promoting 3x3 matrices to 4x4 via placing the 3x3 into the top-left corner of a zeroed out 4x4 matrix, and setting the bottom-right component to <span>$$1$$</span>.</p>
+
+  <div class="matrix-mult">
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-a">a</td>
+          <td class="matrix-a">d</td>
+          <td class="matrix-a">g</td>
+        </tr>
+        <tr>
+          <td class="matrix-a">b</td>
+          <td class="matrix-a">e</td>
+          <td class="matrix-a">h</td>
+        </tr>
+        <tr>
+          <td class="matrix-a">c</td>
+          <td class="matrix-a">f</td>
+          <td class="matrix-a">i</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-e">x</td>
+        </tr>
+        <tr>
+          <td class="matrix-e">y</td>
+        </tr>
+        <tr>
+          <td class="matrix-e">z</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div></div>
+    <div>-></div>
+    <div></div>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-a">a</td>
+          <td class="matrix-a">d</td>
+          <td class="matrix-a">g</td>
+          <td class="matrix-b">0</td>
+        </tr>
+        <tr>
+          <td class="matrix-a">b</td>
+          <td class="matrix-a">e</td>
+          <td class="matrix-a">h</td>
+          <td class="matrix-b">0</td>
+        </tr>
+        <tr>
+          <td class="matrix-a">c</td>
+          <td class="matrix-a">f</td>
+          <td class="matrix-a">i</td>
+          <td class="matrix-b">0</td>
+        </tr>
+        <tr>
+          <td class="matrix-a">0</td>
+          <td class="matrix-a">0</td>
+          <td class="matrix-a">0</td>
+          <td class="matrix-b">1</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-e">x</td>
+        </tr>
+        <tr>
+          <td class="matrix-e">y</td>
+        </tr>
+        <tr>
+          <td class="matrix-e">z</td>
+        </tr>
+        <tr>
+          <td class="matrix-f">1</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div></div>
+    <div><code>=</code></div>
+    <div></div>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-a">a</td>
+          <td class="matrix-a">d</td>
+          <td class="matrix-a">g</td>
+        </tr>
+        <tr>
+          <td class="matrix-a">b</td>
+          <td class="matrix-a">e</td>
+          <td class="matrix-a">h</td>
+        </tr>
+        <tr>
+          <td class="matrix-a">c</td>
+          <td class="matrix-a">f</td>
+          <td class="matrix-a">i</td>
+        </tr>
+        <tr>
+          <td class="matrix-a">0</td>
+          <td class="matrix-a">0</td>
+          <td class="matrix-a">0</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-e">x</td>
+        </tr>
+        <tr>
+          <td class="matrix-e">y</td>
+        </tr>
+        <tr>
+          <td class="matrix-e">z</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div><code>+</code></div>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-b">0</td>
+        </tr>
+        <tr>
+          <td class="matrix-b">0</td>
+        </tr>
+        <tr>
+          <td class="matrix-b">0</td>
+        </tr>
+        <tr>
+          <td class="matrix-b">1</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-f">1</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The x, y, and z values don't contribute to the w component, as can be seen in the first multiplication on the RHS, and in the second multiplication on the RHS we can see that the fourth component is always set to 1. What a nice {{< cite/inline "chiastic" "https://en.wikipedia.org/wiki/Chiasmus" >}} sentence!</p>
+
+  <p>Sometimes in OpenGL (particularly for the {{< cite/inline "linear-perspective projection matrix" "https://www.songho.ca/opengl/gl_projectionmatrix.html" >}}) we're interested in using the w component as a homogeneous scaling coordinate, which OpenGL vertex shaders divide by. Other times we're interested in combining translation and rotation transformations together. Let's focus on the latter.</p>
+
+  <p>We know that an <span>$$\R^3$$</span> rotation matrix is 3x3. Embed that into a 4x4 matrix as above. If, instead of setting them to zero, we set the other three components of the matrix's fourth column to be p, q, and r, we see in the matrix decomposition that this adds p, q, and r to the x, y, and z output components; a translation!</p>
+
+  <div class="matrix-mult">
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-a">a</td>
+          <td class="matrix-a">d</td>
+          <td class="matrix-a">g</td>
+          <td class="matrix-b">p</td>
+        </tr>
+        <tr>
+          <td class="matrix-a">b</td>
+          <td class="matrix-a">e</td>
+          <td class="matrix-a">h</td>
+          <td class="matrix-b">q</td>
+        </tr>
+        <tr>
+          <td class="matrix-a">c</td>
+          <td class="matrix-a">f</td>
+          <td class="matrix-a">i</td>
+          <td class="matrix-b">r</td>
+        </tr>
+        <tr>
+          <td class="matrix-a">0</td>
+          <td class="matrix-a">0</td>
+          <td class="matrix-a">0</td>
+          <td class="matrix-b">1</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-e">x</td>
+        </tr>
+        <tr>
+          <td class="matrix-e">y</td>
+        </tr>
+        <tr>
+          <td class="matrix-e">z</td>
+        </tr>
+        <tr>
+          <td class="matrix-f">1</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div></div>
+    <div><code>=</code></div>
+    <div></div>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-a">a</td>
+          <td class="matrix-a">d</td>
+          <td class="matrix-a">g</td>
+        </tr>
+        <tr>
+          <td class="matrix-a">b</td>
+          <td class="matrix-a">e</td>
+          <td class="matrix-a">h</td>
+        </tr>
+        <tr>
+          <td class="matrix-a">c</td>
+          <td class="matrix-a">f</td>
+          <td class="matrix-a">i</td>
+        </tr>
+        <tr>
+          <td class="matrix-a">0</td>
+          <td class="matrix-a">0</td>
+          <td class="matrix-a">0</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-e">x</td>
+        </tr>
+        <tr>
+          <td class="matrix-e">y</td>
+        </tr>
+        <tr>
+          <td class="matrix-e">z</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div><code>+</code></div>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-b">p</td>
+        </tr>
+        <tr>
+          <td class="matrix-b">q</td>
+        </tr>
+        <tr>
+          <td class="matrix-b">r</td>
+        </tr>
+        <tr>
+          <td class="matrix-b">1</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-f">1</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>This is most often what we want, applying <q>roll, pitch, yaw, translate</q> to construct a <q>model matrix</q> for mapping an object from its own localspace to worldspace. Since we expect to apply further transformations, eg the <q>view matrix</q> mapping from worldspace to cameraspace, it makes sense to keep the matrix 4x4 instead of trying to prematurely optimize for space by using 3x4 matrices, pedantically seeing the three zeros below the rotation matrix as dead weight.</p>
+  <p>As a side note, the view matrix which maps from worldspace to cameraspace (which is really the camera's localspace) is just the inverse of the camera's model matrix. We transform an object from localspace -> worldspace -> cameraspace via <code>model_cam^-1 model_obj = roll_cam^-1 pitch_cam^-1 yaw_cam^-1 pos_cam^-1 pos_obj yaw_obj pitch_obj roll_obj</code>.</p>
+</details>
+
+<details open="true">
+  <summary class="big-summary">Segmented Matrix</summary>
+
+  <p>Our work above also applies if the inner tensor is not just a vector but a matrix. And as I just let slip, this works partitioning any tensor contraction index.</p>
+
+  <p><span>$$(A B) . (C D)^T = A C + B D$$</span></p>
+
+  <div class="matrix-mult">
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- <div><code>.</code></div> -->
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+        </tr>
+        <tr>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+        </tr>
+        <tr>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+        </tr>
+        <tr>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+        </tr>
+        <tr>
+          <td class="matrix-f"></td>
+          <td class="matrix-f"></td>
+          <td class="matrix-f"></td>
+        </tr>
+        <tr>
+          <td class="matrix-f"></td>
+          <td class="matrix-f"></td>
+          <td class="matrix-f"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div></div>
+    <div><code>=</code></div>
+    <div></div>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+        <tr>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+          <td class="matrix-a"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- <div><code>.</code></div> -->
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+        </tr>
+        <tr>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+        </tr>
+        <tr>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+        </tr>
+        <tr>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div><code>+</code></div>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+        <tr>
+          <td class="matrix-b"></td>
+          <td class="matrix-b"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-f"></td>
+          <td class="matrix-f"></td>
+          <td class="matrix-f"></td>
+        </tr>
+        <tr>
+          <td class="matrix-f"></td>
+          <td class="matrix-f"></td>
+          <td class="matrix-f"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Example usage leads us to rederiving {{< cite/inline "Hamming Codes" "https://en.wikipedia.org/wiki/Hamming_code" >}}:</p>
+
+  <p>What if we had a matrix of interest M, and we want to create another matrix from it, so that multiplying a vector v by it stores both v and Mv? A good choice of matrix is <span>$$(I M)^T$$</span>.</p>
+
+  <div class="matrix-mult">
+    <table class="monospace-table">
+      <tbody>
+        <tr>
+          <td class="matrix-e">1</td>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+        </tr>
+        <tr>
+          <td class="matrix-e"></td>
+          <td class="matrix-e">1</td>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+        </tr>
+        <tr>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+          <td class="matrix-e">1</td>
+          <td class="matrix-e"></td>
+        </tr>
+        <tr>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+          <td class="matrix-e"></td>
+          <td class="matrix-e">1</td>
+        </tr>
+        <tr>
+          <td class="matrix-f"></td>
+          <td class="matrix-f"></td>
+          <td class="matrix-f"></td>
+          <td class="matrix-f"></td>
+        </tr>
+        <tr>
+          <td class="matrix-f"></td>
+          <td class="matrix-f"></td>
+          <td class="matrix-f"></td>
+          <td class="matrix-f"></td>
+        </tr>
+        <tr>
+          <td class="matrix-f"></td>
+          <td class="matrix-f"></td>
+          <td class="matrix-f"></td>
+          <td class="matrix-f"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>I've thought for a while about <q>What is the easiest way to show that we can casually talk about <span>$$-M I + I M$$</span> with confidence that these <q>I</q> matrices we've introduced can be postulated to be square?</q>.</p>
+  <p>V -> VxW -> W</p>
+</details>
+
+<details open="true">
+  <summary class="big-summary">Misc thoughts</summary>
+
+  <p>We could also partition into more than two pieces.</p>
+</details>
+
+{{< cite/references >}}
