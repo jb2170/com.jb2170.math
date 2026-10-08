@@ -1298,6 +1298,8 @@
 
     <p><em>Computationally</em> determining which bit to correct is very efficient. The syndrome columns (the columns of $\b{Q}$) are all unique, and the nth syndrome column corresponds to the nth bit being flipped. This correspondence means that we don't even have to look up in a table of closed balls which ball the received vector $\b{r}$ belongs to. Instead we just look at the syndrome vector $\b{Q}\b{r}$: if $\b{Q}\b{r} = \b{0}$ then $\b{r}$ is a codeword $\b{u}$, and if $\b{Q}\b{r} \ne \b{0}$ then flip the nth bit of $\b{r}$, where $\b{Q}\b{r}$ is the nth syndrome column of $\b{Q}$.</p>
 
+    <hr />
+
     <div>
       <h3>Example</h3>
       <p><b>Sender encodes and sends:</b></p>
@@ -2006,7 +2008,7 @@
         </div>
       </div>
       <p>Again, the receiver does not directly perform the intermediate steps here. Instead they simply evaluate the first computation to obtain the final syndrome vector.</p>
-      <p>The computed syndrome vector is the third column of $\b{Q}$, thus the third bit needs flipping to correct the received codeword to the sent codeword. One can then truncate to the first $2^r - 1 - r = 4$ bits to reveal the message embedded in the codeword.</p>
+      <p>The computed syndrome vector is the third column of $\b{Q}$, thus the third bit of the received codeword $\b{r}$ needs flipping to correct it to the sent codeword $\b{u}$. One can then truncate $\b{u}$ to the first $2^r - 1 - r = 4$ bits to reveal the message embedded within.</p>
     </div>
 
     <hr />
