@@ -136,7 +136,7 @@
       <p>I made this gif of rotation by 90 degrees in $P(\R^1)$ while testing how {{< cite/inline "Manim" "https://docs.manim.community/en/stable/examples.html" >}} handles creating gifs. My preference is to render to MP4 and then use ffmpeg separately to create the gif. I may as well commit the image here instead of it being lost.</p>
     </figcaption>
   </figure>
-  <p>In general in projective geometry we have $\text{PGL}(2,\mathbb{F})$ acting on $P^1(\mathbb{F})$ via $\begin{bmatrix} {a} \quad {b} \\ {c} \quad {d} \end{bmatrix} \begin{bmatrix} {z} \\ {1} \end{bmatrix} = \begin{bmatrix} {az + b} \\ {cz + d} \end{bmatrix} = \begin{bmatrix} {(az + b)/(cz + d)} \\ {1} \end{bmatrix}$, and since we have a well-behaved <q>point at infinity</q> $\infty$ to handle $cz + d = 0$, we drop the redundant constant $1$ from our notation and just write $\text{PGL}(2,\mathbb{F})$ acts on $P^1(\mathbb{F}) = \mathbb{F} \cup \lbrace \infty \rbrace$ via $\begin{bmatrix} {a} \quad {b} \\ {c} \quad {d} \end{bmatrix} * z = \dfrac{az + b}{cz + d}$.</p>
+  <p>In general in projective geometry we have $\text{PGL}(2,\mathbb{F})$ acting on $P^1(\mathbb{F})$ via $\begin{bmatrix} {a} \quad {b} \\ {c} \quad {d} \end{bmatrix} \begin{bmatrix} {z} \\ {1} \end{bmatrix} = \begin{bmatrix} {az + b} \\ {cz + d} \end{bmatrix} = \begin{bmatrix} {(az + b)/(cz + d)} \\ {1} \end{bmatrix}$, and since we have a well-behaved <q>point at infinity</q> $\infty$ to handle $cz + d = 0$, we drop the redundant constant $1$ from our notation and just write <q>$\text{PGL}(2,\mathbb{F})$ acts on $P^1(\mathbb{F}) = \mathbb{F} \cup \lbrace \infty \rbrace$ via $\begin{bmatrix} {a} \quad {b} \\ {c} \quad {d} \end{bmatrix} * z = \dfrac{az + b}{cz + d}$</q>.</p>
   <p>You may recognise an example of this as {{< cite/inline "Mobius maps" "https://en.wikipedia.org/wiki/M%C3%B6bius_transformation#Projective_matrix_representations" >}} for $P^1(\mathbb{C})$, which we covered in first year Group Theory. Wikipedia has an article for $P^1(\mathbb{F})$ in general at {{< cite/inline "linear fractional transformations" "https://en.wikipedia.org/wiki/Linear_fractional_transformation" >}}.</p>
 </details>
 
@@ -145,7 +145,7 @@
 
   <p>I was originally going to title this article <q>Delayed Rotation</q> as the delaying of $S$ by $T$ from order 4 to order 6 seemed interesting to me.</p>
   <p>Then I noticed the <q>shifting</q> behaviour of the columns of $(ST)^n$ and in my head connected it to Jordan blocks and linear feedback shift registers, which seemed <em>even more</em> interesting.</p>
-  <p>Then I looked back at the original image I saw on Twitter mention $S$ and $T$; they are generators $\text{PSL}(2,\Z)$, the {{< cite/inline "modular group" "https://en.wikipedia.org/wiki/Modular_group" >}}, not just members of $\text{PSL}(2,\R)$ or $\text{SL}(2,\R)$. This seems like a topic for another time.</p>
+  <p>Then I looked back at the original image I saw on Twitter mention $S$ and $T$; they are generators of $\text{PSL}(2,\Z)$, the {{< cite/inline "modular group" "https://en.wikipedia.org/wiki/Modular_group" >}}, not just members of $\text{PSL}(2,\R)$ or $\text{SL}(2,\R)$. This seems like a topic for another time.</p>
   <p>So I've settled on this article's title being about the shifting matrix tapes.</p>
 
   <p>This is a bit of a sporadic article, but it perhaps gives some insight into the darting around that a mathematician can do. One can set out with a specific idea in mind, but end up having fun in other areas.</p>
